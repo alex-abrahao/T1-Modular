@@ -37,6 +37,7 @@
    #define MATRIZ_EXT extern
 #endif
 
+#include "LISTA.H"
 
 /***********************************************************************
 *
@@ -54,16 +55,16 @@
                /* Não criou nó raiz */
 
          MTZ_CondRetErroEstrutura = 2 ,
-               /* Estrutura da árvore está errada */
+               /* Estrutura da matriz está errada */
 
-         MTZ_CondRetNaoEhFolha = 3 ,
-               /* Não é folha relativa à direção de inserção desejada */
+         MTZ_CondRetDirecaoNaoExisteOuInvalida = 3 ,
+               /* Direcao nao existe ou eh invalida (sai da matriz) */
 
          MTZ_CondRetArvoreNaoExiste = 4 ,
-               /* Árvore não existe */
+               /* Matriz não existe */
 
-         MTZ_CondRetArvoreVazia = 5 ,
-               /* Árvore está vazia */
+         MTZ_CondRetMatrizVazia = 5 ,
+               /* Matriz está vazia */
 
          MTZ_CondRetNohEhRaiz = 6 ,
                /* Nó corrente é raiz */
@@ -78,12 +79,52 @@
 
 
 /***********************************************************************
+ *
+ *  $TC Tipo de dados: MTZ Direcoes
+ *
+ *
+ ***********************************************************************/
+
+typedef enum {
+    
+    MTZ_DirNorte = 0 ,
+        /* Andar na direcao Norte */
+    
+    MTZ_DirNordeste = 1 ,
+        /* Andar na direcao Nordeste */
+    
+    MTZ_DirLeste = 2 ,
+        /* Andar na direcao Leste */
+    
+    MTZ_DirSudeste = 3 ,
+        /* Andar na direcao Sudeste */
+    
+    MTZ_DirSul = 4 ,
+        /* Andar na direcao Sul */
+    
+    MTZ_DirSudoeste = 5 ,
+        /* Andar na direcao Sudoeste */
+    
+    MTZ_DirOeste = 6 ,
+        /* Andar na direcao Oeste */
+    
+    MTZ_DirNoroeste = 7 ,
+        /* Andar na direcao Noroeste */
+    
+} MTZ_tpDirecao ;
+
+
+/***********************************************************************
 *
-*  $FC Função: MTZ Criar árvore
+*  $FC Função: MTZ Criar matriz
 *
 *  $ED Descrição da função
-*     Cria uma nova árvore vazia.
-*     Caso já exista uma árvore, esta será destruída.
+*     Cria uma nova matriz n x n.
+*     Caso já exista uma matriz no indice especificado, esta será destruída.
+*
+*  $EP Parametros
+*     $P n - Tamanho da matriz quadrada
+*     $P indiceMatriz - Indice da matriz a ser criada, entre 0 e 9
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -91,7 +132,7 @@
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_CriarArvore( void ) ;
+   MTZ_tpCondRet MTZ_CriarMatriz( int n, int indiceMatriz ) ;
 
 
 /***********************************************************************
@@ -104,7 +145,7 @@
 *
 ***********************************************************************/
 
-   void MTZ_DestruirArvore( void ) ;
+   void MTZ_DestruirMatriz( void ) ;
 
 
 /***********************************************************************
@@ -122,7 +163,7 @@
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_InserirEsquerda( char ValorParm ) ;
+   MTZ_tpCondRet MTZ_( char ValorParm ) ;
 
 
 /***********************************************************************
