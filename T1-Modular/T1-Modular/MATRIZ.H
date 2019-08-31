@@ -12,14 +12,11 @@
 *
 *  Projeto: Disciplinas INF 1628 / 1301
 *  Gestor:  DI/PUC-Rio
-*  Autores: avs - Arndt von Staa
+*  Autores: aaf - Alexandre Abrahão Ferreira
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*       3.00   avs   28/02/2003 Uniformização da interface das funções e
-*                               de todas as condições de retorno.
-*       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
-*       1.00   avs   15/08/2001 Início do desenvolvimento
+*       1.00   aaf   26/08/2019 Início do desenvolvimento
 *
 *  $ED Descrição do módulo
 *     Este módulo implementa um conjunto simples de funções para criar e
@@ -34,10 +31,10 @@
 *
 ***************************************************************************/
  
-#if defined( ARVORE_OWN )
-   #define ARVORE_EXT
+#if defined( MATRIZ_OWN )
+   #define MATRIZ_EXT
 #else
-   #define ARVORE_EXT extern
+   #define MATRIZ_EXT extern
 #endif
 
 
@@ -208,9 +205,9 @@
 
    MTZ_tpCondRet MTZ_ObterValorCorr( char * ValorParm ) ;
 
-#undef ARVORE_EXT
+#undef MATRIZ_EXT
 
-/********** Fim do módulo de definição: Módulo árvore **********/
+/********** Fim do módulo de definição: Módulo matriz **********/
 
 #else
 #endif
