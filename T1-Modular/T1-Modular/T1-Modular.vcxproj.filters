@@ -18,5 +18,28 @@
     <ClCompile Include="hello.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ARVORE.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TESTARV.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GENERICO.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LERPARM.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TST_ESPC.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MATRIZ.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ArcaboucoTeste.lib" />
   </ItemGroup>
 </Project>

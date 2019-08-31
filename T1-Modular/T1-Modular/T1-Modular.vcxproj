@@ -74,7 +74,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ARVORE.C" />
     <ClCompile Include="hello.c" />
+    <ClCompile Include="TESTARV.C" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MATRIZ.H" />
+    <ClInclude Include="GENERICO.H" />
+    <ClInclude Include="LERPARM.H" />
+    <ClInclude Include="TST_ESPC.H" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ArcaboucoTeste.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
