@@ -51,20 +51,20 @@
          MTZ_CondRetOK = 0 ,
                /* Executou correto */
 
-         MTZ_CondRetNaoCriouRaiz = 1 ,
-               /* Não criou nó raiz */
+         MTZ_CondRetNaoCriouHead = 1 ,
+               /* Não criou a cabeca */
 
          MTZ_CondRetErroEstrutura = 2 ,
                /* Estrutura da matriz está errada */
 
          MTZ_CondRetDirecaoNaoExisteOuInvalida = 3 ,
-               /* Direcao nao existe ou eh invalida (sai da matriz) */
+               /* Direcao nao existe ou Ž invalida (sai da matriz) */
 
-         MTZ_CondRetArvoreNaoExiste = 4 ,
+         MTZ_CondRetMatrizNaoExiste = 4 ,
                /* Matriz não existe */
 
-         MTZ_CondRetMatrizVazia = 5 ,
-               /* Matriz está vazia */
+         MTZ_CondRetCasaVazia = 5 ,
+               /* Casa da matriz está vazia */
 
          MTZ_CondRetNohEhRaiz = 6 ,
                /* Nó corrente é raiz */
@@ -85,33 +85,33 @@
  *
  ***********************************************************************/
 
-typedef enum {
-    
-    MTZ_DirNorte = 0 ,
-        /* Andar na direcao Norte */
-    
-    MTZ_DirNordeste = 1 ,
-        /* Andar na direcao Nordeste */
-    
-    MTZ_DirLeste = 2 ,
-        /* Andar na direcao Leste */
-    
-    MTZ_DirSudeste = 3 ,
-        /* Andar na direcao Sudeste */
-    
-    MTZ_DirSul = 4 ,
-        /* Andar na direcao Sul */
-    
-    MTZ_DirSudoeste = 5 ,
-        /* Andar na direcao Sudoeste */
-    
-    MTZ_DirOeste = 6 ,
-        /* Andar na direcao Oeste */
-    
-    MTZ_DirNoroeste = 7 ,
-        /* Andar na direcao Noroeste */
-    
-} MTZ_tpDirecao ;
+    typedef enum {
+        
+        MTZ_DirNorte = 0 ,
+            /* Andar na direcao Norte */
+        
+        MTZ_DirNordeste = 1 ,
+            /* Andar na direcao Nordeste */
+        
+        MTZ_DirLeste = 2 ,
+            /* Andar na direcao Leste */
+        
+        MTZ_DirSudeste = 3 ,
+            /* Andar na direcao Sudeste */
+        
+        MTZ_DirSul = 4 ,
+            /* Andar na direcao Sul */
+        
+        MTZ_DirSudoeste = 5 ,
+            /* Andar na direcao Sudoeste */
+        
+        MTZ_DirOeste = 6 ,
+            /* Andar na direcao Oeste */
+        
+        MTZ_DirNoroeste = 7 ,
+            /* Andar na direcao Noroeste */
+        
+    } MTZ_tpDirecao ;
 
 
 /***********************************************************************
@@ -124,46 +124,50 @@ typedef enum {
 *
 *  $EP Parametros
 *     $P n - Tamanho da matriz quadrada
-*     $P indiceMatriz - Indice da matriz a ser criada, entre 0 e 9
+*     $P indiceMtz - Indice da matriz a ser criada, entre 0 e 9
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetFaltouMemoria
+*     MTZ_CondRetMatrizNaoExiste  - Caso o indice esteja fora do permitido
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_CriarMatriz( int n, int indiceMatriz ) ;
+   MTZ_tpCondRet MTZ_CriarMatriz( unsigned n, int indiceMtz ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: MTZ Destruir árvore
+*  $FC Função: MTZ Destruir matriz
 *
 *  $ED Descrição da função
-*     Destrói o corpo e a cabeça da árvore, anulando a árvore corrente.
-*     Faz nada caso a árvore corrente não exista.
+*     Destrói a cabeça da matriz, anulando a matriz especificada.
+*     Faz nada caso o indice nao contenha uma matriz.
+*
+*  $EP Parametros
+*     $P indiceMtz - Indice da matriz a ser destruida, entre 0 e 9
 *
 ***********************************************************************/
 
-   void MTZ_DestruirMatriz( void ) ;
+   void MTZ_DestruirMatriz( int indiceMtz ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: MTZ Adicionar filho à esquerda
+*  $FC Função: MTZ Andar em direcao
 *
 *  $EP Parâmetros
-*     $P ValorParm - valor a ser inserido no novo nó.
+*     $P indiceMtz - Indice da matriz.
+*     $P direcao - Direcao a andar.
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
-*     MTZ_CondRetErroEstrutura
-*     MTZ_CondRetFaltouMemoria
-*     MTZ_CondRetNaoEhFolha     - caso não seja folha para a esquerda
+*     MTZ_CondRetDirecaoNaoExisteOuInvalida
+*     MTZ_CondRetMatrizNaoExiste
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_( char ValorParm ) ;
+   MTZ_tpCondRet MTZ_AndarDirecao( int indiceMtz, MTZ_tpDirecao direcao ) ;
 
 
 /***********************************************************************
@@ -234,13 +238,14 @@ typedef enum {
 *  $FC Função: MTZ Obter valor corrente
 *
 *  $EP Parâmetros
+*     $P indiceMtz - Indice da matriz selecionada, entre 0 e 9
 *     $P ValorParm - é o parâmetro que receberá o valor contido no nó.
 *                    Este parâmetro é passado por referência.
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
-*     MTZ_CondRetArvoreNaoExiste
-*     MTZ_CondRetArvoreVazia
+*     MTZ_CondRetMatrizNaoExiste
+*     MTZ_CondRetMatrizVazia
 *
 ***********************************************************************/
 
