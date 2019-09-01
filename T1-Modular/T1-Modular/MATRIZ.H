@@ -66,13 +66,7 @@
          MTZ_CondRetCasaVazia = 5 ,
                /* Casa da matriz está vazia */
 
-         MTZ_CondRetNohEhRaiz = 6 ,
-               /* Nó corrente é raiz */
-
-         MTZ_CondRetNaoPossuiFilho = 7 ,
-               /* Nó corrente não possui filho na direção desejada */
-
-         MTZ_CondRetFaltouMemoria = 8
+         MTZ_CondRetFaltouMemoria = 6 ,
                /* Faltou memória ao alocar dados */
 
    } MTZ_tpCondRet ;
@@ -123,8 +117,8 @@
 *     Caso já exista uma matriz no indice especificado, esta será destruída.
 *
 *  $EP Parametros
-*     $P n - Tamanho da matriz quadrada
 *     $P indiceMtz - Indice da matriz a ser criada, entre 0 e 9
+*     $P n - Tamanho da matriz quadrada
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -133,7 +127,7 @@
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_CriarMatriz( unsigned n, int indiceMtz ) ;
+   MTZ_tpCondRet MTZ_CriarMatriz( int indiceMtz, unsigned n ) ;
 
 
 /***********************************************************************
@@ -147,9 +141,13 @@
 *  $EP Parametros
 *     $P indiceMtz - Indice da matriz a ser destruida, entre 0 e 9
 *
+*  $FV Valor retornado
+*     MTZ_CondRetOK
+*     MTZ_CondRetMatrizNaoExiste  - Caso o indice esteja fora do permitido
+*
 ***********************************************************************/
 
-   void MTZ_DestruirMatriz( int indiceMtz ) ;
+   MTZ_tpCondRet MTZ_DestruirMatriz( int indiceMtz ) ;
 
 
 /***********************************************************************
@@ -172,84 +170,66 @@
 
 /***********************************************************************
 *
-*  $FC Função: MTZ Adicionar filho à direita
+*  $FC Função: MTZ Inserir lista na casa corrente
+*
+*  $ED Descrição da função
+*     Insere uma lista de caracteres na casa corrente da matriz selecionada.
 *
 *  $EP Parâmetros
-*     $P ValorParm - valor a ser inserido no novo nó
+*     $P indiceMtz - Indice da matriz.
+*     $P lista - Ponteiro para lista de caracteres a serem inseridos na
+*                casa corrente da matriz.
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetErroEstrutura
 *     MTZ_CondRetFaltouMemoria
-*     MTZ_CondRetNaoEhFolha     - caso não seja folha para a direita
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_InserirDireita( char ValorParm ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: MTZ Ir para nó pai
-*
-*  $FV Valor retornado
-*     MTZ_CondRetOK
-*     MTZ_CondRetArvoreNaoExiste
-*     MTZ_CondRetArvoreVazia
-*     MTZ_CondRetNoEhRaiz
-*
-***********************************************************************/
-
-   MTZ_tpCondRet MTZ_IrPai( void ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: MTZ Ir para nó à esquerda
-*
-*  $FV Valor retornado
-*     MTZ_CondRetOK
-*     MTZ_CondRetArvoreNaoExiste
-*     MTZ_CondRetArvoreVazia
-*     MTZ_CondRetNaoPossuiFilho   - nó corrente não possui filho à esquerda
-*
-***********************************************************************/
-
-   MTZ_tpCondRet MTZ_IrNoEsquerda( void ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: MTZ Ir para nó à direita
-*
-*  $FV Valor retornado
-*     MTZ_CondRetOK
-*     MTZ_CondRetArvoreNaoExiste
-*     MTZ_CondRetArvoreVazia
-*     MTZ_CondRetNaoPossuiFilho   - nó corrente não possui filho à direita
-*
-***********************************************************************/
-
-   MTZ_tpCondRet MTZ_IrNoDireita( void ) ;
+   MTZ_tpCondRet MTZ_InserirListaNaCasaCorrente( int indiceMtz, LIS_tppLista lista ) ;
 
 
 /***********************************************************************
 *
 *  $FC Função: MTZ Obter valor corrente
 *
+*  $ED Descrição da função
+*     Obtem uma lista de caracteres na casa corrente da matriz selecionada.
+*
 *  $EP Parâmetros
 *     $P indiceMtz - Indice da matriz selecionada, entre 0 e 9
-*     $P ValorParm - é o parâmetro que receberá o valor contido no nó.
-*                    Este parâmetro é passado por referência.
+*     $P lista - Ponteiro para receber a lista de caracteres a ser
+*                buscada na casa corrente da matriz.
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetMatrizNaoExiste
-*     MTZ_CondRetMatrizVazia
+*     MTZ_CondRetCasaVazia
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_ObterValorCorr( char * ValorParm ) ;
+   MTZ_tpCondRet MTZ_ObterValorCorrente( int indiceMTZ, LIS_tppLista lista ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: MTZ Excluir valor corrente
+*
+*  $ED Descrição da função
+*     Exclui a lista de caracteres na casa corrente da matriz selecionada.
+*
+*  $EP Parâmetros
+*     $P indiceMtz - Indice da matriz selecionada, entre 0 e 9
+*
+*  $FV Valor retornado
+*     MTZ_CondRetOK
+*     MTZ_CondRetMatrizNaoExiste
+*
+***********************************************************************/
+
+    MTZ_tpCondRet MTZ_ExcluirValorCorrente( int indiceMTZ ) ;
+
 
 #undef MATRIZ_EXT
 
