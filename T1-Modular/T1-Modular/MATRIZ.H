@@ -39,6 +39,14 @@
 
 #include "LISTA.H"
 
+
+/***** Declarações exportadas pelo módulo *****/
+
+/* Tipo referência para uma matriz */
+
+typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
+
+
 /***********************************************************************
 *
 *  $TC Tipo de dados: MTZ Condicoes de retorno
@@ -117,17 +125,17 @@
 *     Caso já exista uma matriz no indice especificado, esta será destruída.
 *
 *  $EP Parametros
-*     $P indiceMtz - Indice da matriz a ser criada, entre 0 e 9
+*     $P pMtz - Ponteiro para o ponteiro para uma matriz
 *     $P n - Tamanho da matriz quadrada
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetFaltouMemoria
-*     MTZ_CondRetMatrizNaoExiste  - Caso o indice esteja fora do permitido
+*     MTZ_CondRetMatrizNaoExiste
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_CriarMatriz( int indiceMtz, unsigned n ) ;
+   MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz ** pMtz, unsigned n ) ;
 
 
 /***********************************************************************
@@ -139,15 +147,15 @@
 *     Faz nada caso o indice nao contenha uma matriz.
 *
 *  $EP Parametros
-*     $P indiceMtz - Indice da matriz a ser destruida, entre 0 e 9
+*     $P pMtz - Ponteiro para o ponteiro para uma matriz
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
-*     MTZ_CondRetMatrizNaoExiste  - Caso o indice esteja fora do permitido
+*     MTZ_CondRetMatrizNaoExiste
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_DestruirMatriz( int indiceMtz ) ;
+   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz ** pMtz ) ;
 
 
 /***********************************************************************
@@ -155,7 +163,7 @@
 *  $FC Função: MTZ Andar em direcao
 *
 *  $EP Parâmetros
-*     $P indiceMtz - Indice da matriz.
+*     $P pMtz - Ponteiro para o ponteiro para uma matriz
 *     $P direcao - Direcao a andar.
 *
 *  $FV Valor retornado
@@ -165,7 +173,7 @@
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_AndarDirecao( int indiceMtz, MTZ_tpDirecao direcao ) ;
+   MTZ_tpCondRet MTZ_AndarDirecao( MTZ_tppMatriz ** pMtz, MTZ_tpDirecao direcao ) ;
 
 
 /***********************************************************************
@@ -176,7 +184,7 @@
 *     Insere uma lista de caracteres na casa corrente da matriz selecionada.
 *
 *  $EP Parâmetros
-*     $P indiceMtz - Indice da matriz.
+*     $P pMtz - Ponteiro para o ponteiro para uma matriz
 *     $P lista - Ponteiro para lista de caracteres a serem inseridos na
 *                casa corrente da matriz.
 *
@@ -187,7 +195,7 @@
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_InserirListaNaCasaCorrente( int indiceMtz, LIS_tppLista lista ) ;
+   MTZ_tpCondRet MTZ_InserirListaNaCasaCorrente( MTZ_tppMatriz ** pMtz, LIS_tppLista lista ) ;
 
 
 /***********************************************************************
@@ -198,7 +206,7 @@
 *     Obtem uma lista de caracteres na casa corrente da matriz selecionada.
 *
 *  $EP Parâmetros
-*     $P indiceMtz - Indice da matriz selecionada, entre 0 e 9
+*     $P pMtz - Ponteiro para o ponteiro para uma matriz
 *     $P lista - Ponteiro para receber a lista de caracteres a ser
 *                buscada na casa corrente da matriz.
 *
@@ -209,7 +217,7 @@
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_ObterValorCorrente( int indiceMTZ, LIS_tppLista lista ) ;
+   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz ** pMtz, LIS_tppLista lista ) ;
 
 
 /***********************************************************************
@@ -220,7 +228,7 @@
 *     Exclui a lista de caracteres na casa corrente da matriz selecionada.
 *
 *  $EP Parâmetros
-*     $P indiceMtz - Indice da matriz selecionada, entre 0 e 9
+*     $P pMtz - Ponteiro para o ponteiro para uma matriz
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -228,7 +236,7 @@
 *
 ***********************************************************************/
 
-    MTZ_tpCondRet MTZ_ExcluirValorCorrente( int indiceMTZ ) ;
+    MTZ_tpCondRet MTZ_ExcluirValorCorrente( MTZ_tppMatriz ** pMtz ) ;
 
 
 #undef MATRIZ_EXT

@@ -25,6 +25,7 @@
 
 #define MATRIZ_OWN
 #include "MATRIZ.H"
+#include "LISTA.H"
 #undef MARIZ_OWN
 
 /***********************************************************************
@@ -39,50 +40,12 @@
 
    typedef struct tgCasaMatriz {
 
-         struct tgCasaMatriz * pCasaNoroeste ;
-               /* Ponteiro para a casa noroeste
-               *
-               */
+         struct tgCasaMatriz * pCasasAdjacentes[8] ;
+               /* Vetor de ponteiros para as casas adjacentes */
 
-         struct tgCasaMatriz * pCasaNorte ;
-               /* Ponteiro para a casa norte
-               *
-               */
-
-         struct tgCasaMatriz * pCasaNordeste ;
-               /* Ponteiro para a casa nordeste
-               *
-               */
-
-         struct tgCasaMatriz * pCasaOeste ;
-               /* Ponteiro para a casa oeste
-               *
-               */
-
-         struct tgCasaMatriz * pCasaLeste ;
-               /* Ponteiro para a casa leste
-               *
-               */
-
-         struct tgCasaMatriz * pCasaSudoeste ;
-               /* Ponteiro para a casa sudoeste
-               *
-               */
-
-         struct tgCasaMatriz * pCasaSul ;
-               /* Ponteiro para a casa sul
-               *
-               */
-
-         struct tgCasaMatriz * pCasaSudeste ;
-               /* Ponteiro para a casa sudeste
-               *
-               */
-
-         char Valor ;
-               /* Valor da casa
-			   */
-
+         LIS_tppLista * lista ;
+               /* Lista da casa */
+       
    } tpCasaMatriz ;
 
 /***********************************************************************
@@ -100,10 +63,7 @@
 
    typedef struct tgMatriz {
 
-         tpCasaMatriz * pNoRaiz ;
-               /* Ponteiro para a raiz da matriz */
-
-         tpCasaMatriz * pNoCorr ;
+         tpCasaMatriz * pCasaCorr ;
                /* Ponteiro para o casa corrente da matriz */
 
    } tpMatriz ;
@@ -141,7 +101,7 @@
       {
          return MTZ_CondRetFaltouMemoria ;
       } /* if */
-
+      
       pMatriz->pNoRaiz = NULL ;
       pMatriz->pNoCorr = NULL ;
 
