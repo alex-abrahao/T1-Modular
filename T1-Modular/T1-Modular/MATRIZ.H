@@ -135,7 +135,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz ** pMtz, unsigned n ) ;
+   MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * pMtz, unsigned n ) ;
 
 
 /***********************************************************************
@@ -155,7 +155,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz ** pMtz ) ;
+   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz pMtz ) ;
 
 
 /***********************************************************************
@@ -173,7 +173,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_AndarDirecao( MTZ_tppMatriz ** pMtz, MTZ_tpDirecao direcao ) ;
+   MTZ_tpCondRet MTZ_AndarDirecao( MTZ_tppMatriz pMtz, MTZ_tpDirecao direcao ) ;
 
 
 /***********************************************************************
@@ -184,7 +184,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *     Insere uma lista de caracteres na casa corrente da matriz selecionada.
 *
 *  $EP Parâmetros
-*     $P pMtz - Ponteiro para o ponteiro para uma matriz
+*     $P pMtz - Ponteiro para uma matriz
 *     $P lista - Ponteiro para lista de caracteres a serem inseridos na
 *                casa corrente da matriz.
 *
@@ -195,7 +195,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_InserirListaNaCasaCorrente( MTZ_tppMatriz ** pMtz, LIS_tppLista lista ) ;
+   MTZ_tpCondRet MTZ_InserirListaNaCasaCorrente( MTZ_tppMatriz pMtz, LIS_tppLista lista ) ;
 
 
 /***********************************************************************
@@ -217,26 +217,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz ** pMtz, LIS_tppLista lista ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: MTZ Excluir valor corrente
-*
-*  $ED Descrição da função
-*     Exclui a lista de caracteres na casa corrente da matriz selecionada.
-*
-*  $EP Parâmetros
-*     $P pMtz - Ponteiro para o ponteiro para uma matriz
-*
-*  $FV Valor retornado
-*     MTZ_CondRetOK
-*     MTZ_CondRetMatrizNaoExiste
-*
-***********************************************************************/
-
-    MTZ_tpCondRet MTZ_ExcluirValorCorrente( MTZ_tppMatriz ** pMtz ) ;
+   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, LIS_tppLista lista ) ;
 
 
 #undef MATRIZ_EXT

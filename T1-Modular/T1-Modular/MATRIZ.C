@@ -42,8 +42,9 @@
 
          struct tgCasaMatriz * pCasasAdjacentes[8] ;
                /* Vetor de ponteiros para as casas adjacentes */
-
-         LIS_tppLista * lista ;
+       
+       void * conteudo ;
+//         LIS_tppLista * lista ;
                /* Lista da casa */
        
    } tpCasaMatriz ;
@@ -62,9 +63,13 @@
 ***********************************************************************/
 
    typedef struct tgMatriz {
+       
+       tpCasaMatriz * pPrimeiro ;
 
          tpCasaMatriz * pCasaCorr ;
                /* Ponteiro para o casa corrente da matriz */
+       
+       char id;
 
    } tpMatriz ;
 
