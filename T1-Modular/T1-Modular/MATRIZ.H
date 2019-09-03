@@ -37,8 +37,6 @@
    #define MATRIZ_EXT extern
 #endif
 
-#include "LISTA.H"
-
 
 /***** Declarações exportadas pelo módulo *****/
 
@@ -127,6 +125,9 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *  $EP Parametros
 *     $P pMtz - Ponteiro para o ponteiro para uma matriz
 *     $P n - Tamanho da matriz quadrada
+*     $P ExcluirValor - ponteiro para a função que processa a
+*                       exclusão do valor referenciado pelo elemento
+*                       a ser excluído.
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -135,7 +136,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * pMtz, unsigned n ) ;
+MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * pMtz, unsigned n, void ( * ExcluirValor ) ( void * pValor ) ) ;
 
 
 /***********************************************************************
@@ -147,7 +148,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *     Faz nada caso o indice nao contenha uma matriz.
 *
 *  $EP Parametros
-*     $P pMtz - Ponteiro para o ponteiro para uma matriz
+*     $P pMtz - Ponteiro para uma matriz
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -163,7 +164,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *  $FC Função: MTZ Andar em direcao
 *
 *  $EP Parâmetros
-*     $P pMtz - Ponteiro para o ponteiro para uma matriz
+*     $P pMtz - Ponteiro para uma matriz
 *     $P direcao - Direcao a andar.
 *
 *  $FV Valor retornado
@@ -181,12 +182,11 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *  $FC Função: MTZ Inserir lista na casa corrente
 *
 *  $ED Descrição da função
-*     Insere uma lista de caracteres na casa corrente da matriz selecionada.
+*     Insere um elemento na casa corrente da matriz.
 *
 *  $EP Parâmetros
 *     $P pMtz - Ponteiro para uma matriz
-*     $P lista - Ponteiro para lista de caracteres a serem inseridos na
-*                casa corrente da matriz.
+*     $P elemento - Ponteiro para valor a ser inserido na casa corrente
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -195,7 +195,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_InserirListaNaCasaCorrente( MTZ_tppMatriz pMtz, LIS_tppLista lista ) ;
+   MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * elemento ) ;
 
 
 /***********************************************************************
@@ -203,12 +203,11 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *  $FC Função: MTZ Obter valor corrente
 *
 *  $ED Descrição da função
-*     Obtem uma lista de caracteres na casa corrente da matriz selecionada.
+*     Obtem o valor presente na casa corrente da matriz selecionada.
 *
 *  $EP Parâmetros
-*     $P pMtz - Ponteiro para o ponteiro para uma matriz
-*     $P lista - Ponteiro para receber a lista de caracteres a ser
-*                buscada na casa corrente da matriz.
+*     $P pMtz - Ponteiro para uma matriz
+*     $P valor - Ponteiro para o valor a ser obtido
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -217,7 +216,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, LIS_tppLista lista ) ;
+   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void * valor ) ;
 
 
 #undef MATRIZ_EXT
