@@ -42,12 +42,12 @@
 
 /* Tipo referência para uma matriz */
 
-typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
+typedef struct tgCasaMatriz * MTZ_tppMatriz ;
 
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: MTZ Condicoes de retorno
+*  $TC Tipo de dados: MTZ Condiçoes de retorno
 *
 *
 ***********************************************************************/
@@ -58,13 +58,13 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
                /* Executou correto */
 
          MTZ_CondRetNaoCriouHead = 1 ,
-               /* Não criou a cabeca */
+               /* Não criou a cabeça */
 
          MTZ_CondRetErroEstrutura = 2 ,
                /* Estrutura da matriz está errada */
 
          MTZ_CondRetDirecaoNaoExisteOuInvalida = 3 ,
-               /* Direcao nao existe ou Ž invalida (sai da matriz) */
+               /* Direcao nao existe ou é invalida (sai da matriz) */
 
          MTZ_CondRetMatrizNaoExiste = 4 ,
                /* Matriz não existe */
@@ -80,7 +80,7 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 
 /***********************************************************************
  *
- *  $TC Tipo de dados: MTZ Direcoes
+ *  $TC Tipo de dados: MTZ Direções
  *
  *
  ***********************************************************************/
@@ -88,28 +88,28 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
     typedef enum {
         
         MTZ_DirNorte = 0 ,
-            /* Andar na direcao Norte */
+            /* Andar na direção Norte */
         
         MTZ_DirNordeste = 1 ,
-            /* Andar na direcao Nordeste */
+            /* Andar na direção Nordeste */
         
         MTZ_DirLeste = 2 ,
-            /* Andar na direcao Leste */
+            /* Andar na direção Leste */
         
         MTZ_DirSudeste = 3 ,
-            /* Andar na direcao Sudeste */
+            /* Andar na direção Sudeste */
         
         MTZ_DirSul = 4 ,
-            /* Andar na direcao Sul */
+            /* Andar na direção Sul */
         
         MTZ_DirSudoeste = 5 ,
-            /* Andar na direcao Sudoeste */
+            /* Andar na direção Sudoeste */
         
         MTZ_DirOeste = 6 ,
-            /* Andar na direcao Oeste */
+            /* Andar na direção Oeste */
         
         MTZ_DirNoroeste = 7 ,
-            /* Andar na direcao Noroeste */
+            /* Andar na direção Noroeste */
         
     } MTZ_tpDirecao ;
 
@@ -120,11 +120,11 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *
 *  $ED Descrição da função
 *     Cria uma nova matriz n x n.
-*     Caso já exista uma matriz no indice especificado, esta será destruída.
+*     Caso já exista uma matriz no ponteiro especificado, esta será destruída.
 *
 *  $EP Parametros
-*     $P pMtz - Ponteiro para o ponteiro para uma matriz
-*     $P n - Tamanho da matriz quadrada
+*     $P ppMtz - Ponteiro para o ponteiro para uma matriz
+*     $P n - Dimensão n x n da matriz quadrada
 *     $P ExcluirValor - ponteiro para a função que processa a
 *                       exclusão do valor referenciado pelo elemento
 *                       a ser excluído.
@@ -132,11 +132,11 @@ typedef struct MTZ_tagMatriz * MTZ_tppMatriz ;
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetFaltouMemoria
-*     MTZ_CondRetMatrizNaoExiste
+*     MTZ_CondRetErroEstrutura   - Caso a dimensão da matriz seja menor que zero
 *
 ***********************************************************************/
 
-MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * pMtz, unsigned n, void ( * ExcluirValor ) ( void * pValor ) ) ;
+MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValor ) ( void * pValor ) ) ;
 
 
 /***********************************************************************
@@ -161,11 +161,11 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * pMtz, unsigned n, void ( * Excluir
 
 /***********************************************************************
 *
-*  $FC Função: MTZ Andar em direcao
+*  $FC Função: MTZ Andar em Direção
 *
 *  $EP Parâmetros
 *     $P pMtz - Ponteiro para uma matriz
-*     $P direcao - Direcao a andar.
+*     $P direcao - Direção a andar.
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
