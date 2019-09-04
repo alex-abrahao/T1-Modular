@@ -9,7 +9,9 @@
 *
 *  Projeto: Disciplinas INF 1628 / 1301
 *  Gestor:  DI/PUC-Rio
-*  Autores: avs - Arndt von Staa
+*  Autores: aaf - Alexandre Abrahão Ferreira
+*           jmb - João Marcello Bessa
+*           phd - Pedro Henrique Dias
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
@@ -187,7 +189,6 @@
          }
       }
 
-
       // Apontar o ponteiro corrente para a primeira casa
       *ppMtz->pCasaCorr = *ppMtz->pPrimeiro;
 
@@ -293,8 +294,7 @@
 *
 ***********************************************************************/
 
-   void DestroiMatriz( tpCasaMatriz * pNo )
-   {
+   void DestroiMatriz( tpCasaMatriz * pCasa ) {
 
       if ( pNo->pNoEsq != NULL )
       {
