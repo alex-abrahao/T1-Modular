@@ -26,7 +26,7 @@
 #define MATRIZ_OWN
 #include "MATRIZ.H"
 #include "LISTA.H"
-#undef MARIZ_OWN
+#undef MATRIZ_OWN
 
 /***********************************************************************
 *
@@ -34,7 +34,7 @@
 *
 *
 *  $ED Descrição do tipo
-*     Descreve a organização do casa
+*     Descreve a organização de uma casa da matriz
 *
 ***********************************************************************/
 
@@ -43,9 +43,8 @@
          struct tgCasaMatriz * pCasasAdjacentes[8] ;
                /* Vetor de ponteiros para as casas adjacentes */
        
-       void * conteudo ;
-//         LIS_tppLista * lista ;
-               /* Lista da casa */
+         void * conteudo ;
+               /* Conteúdo da casa */
        
    } tpCasaMatriz ;
 
@@ -55,7 +54,7 @@
 *
 *
 *  $ED Descrição do tipo
-*     A cabe‡a da matriz é o ponto de acesso para uma determinada matriz.
+*     A cabeça da matriz é o ponto de acesso para uma determinada matriz.
 *     Por intermédio da referência para o casa corrente e do ponteiro
 *     pai pode-se navegar a matriz sem necessitar de uma pilha.
 *     Pode-se, inclusive, operar com a matriz em forma de co-rotina.
@@ -64,25 +63,25 @@
 
    typedef struct tgMatriz {
        
-       tpCasaMatriz * pPrimeiro ;
+         tpCasaMatriz * pPrimeiro ;
+               /* Ponteiro para a casa (0, 0) da matriz */
 
          tpCasaMatriz * pCasaCorr ;
                /* Ponteiro para o casa corrente da matriz */
        
-       char id;
+         char id;
+               /* Caracter identificador da matriz (opcional) */
+
+         void ( * ExcluirValor ) ( void * pValor ) ;
+               /* Ponteiro para a função de destruição do valor contido em um elemento */
 
    } tpMatriz ;
 
 /*****  Dados encapsulados no módulo  *****/
 
-      static tpMatriz * pMatriz = NULL ;
-            /* Ponteiro para a cabe‡a da matriz */
-
 /***** Protótipos das funções encapuladas no módulo *****/
 
-   static tpCasaMatriz * CriarNo( char ValorParm ) ;
-
-   static MTZ_tpCondRet CriarNoRaiz( char ValorParm ) ;
+   static tpCasaMatriz * CriarCasa( ) ;
 
    static void DestroiMatriz( tpCasaMatriz * pNo ) ;
 
@@ -93,22 +92,43 @@
 *  Função: MTZ Criar matriz
 *  ****/
 
-   MTZ_tpCondRet MTZ_CriarMatriz( void )
-   {
+   MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValor ) ( void * pValor ) ) {
 
-      if ( pMatriz != NULL )
-      {
-         MTZ_DestruirMatriz( ) ;
-      } /* if */
+      // Verificar se n é positivo
+      if (n <= 0) return MTZ_CondRetErroEstrutura;
 
-      pMatriz = ( tpMatriz * ) malloc( sizeof( tpMatriz )) ;
-      if ( pMatriz == NULL )
-      {
-         return MTZ_CondRetFaltouMemoria ;
-      } /* if */
-      
-      pMatriz->pNoRaiz = NULL ;
-      pMatriz->pNoCorr = NULL ;
+      // Se já havia uma matriz anteriormente, destrua-a primeiro
+      if (*ppMtz != NULL)
+         MTZ_DestruirMatriz(*ppMtz);
+
+      // Alocar espaço para a head
+      *ppMtz = ( tpMatriz * ) malloc( sizeof( tpMatriz )) ;
+      if (*ppMtz == NULL)
+         return MTZ_CondRetFaltouMemoria;
+
+      // Setup da head
+      *ppMtz->id = 0;
+      *ppMtz->ExcluirValor = ExcluirValor;
+      *ppMtz->pCasaCorr = NULL;
+
+      // Criar a primeira casa
+      *ppMtz->pPrimeiro = CriarCasa();
+      if (*ppMtz->pPrimeiro == NULL) {
+         // Libera a head
+         free(*ppMtz);
+         return MTZ_CondRetFaltouMemoria;
+      }
+
+      // Começa a preencher as demais casas
+      int i, j;
+      tpCasaMatriz * pCasaAnterior, * pCasaInicioLinha, * pCasaAtual;
+      // Para cada linha
+
+         // Para cada coluna
+
+
+      // Retornar o ponteiro corrente para a primeira casa
+      *ppMtz->pCasaCorr = *ppMtz->pPrimeiro;
 
       return MTZ_CondRetOK ;
 
@@ -119,8 +139,7 @@
 *  Função: MTZ Destruir matriz
 *  ****/
 
-   void MTZ_DestruirMatriz( void )
-   {
+   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz pMtz ) {
 
       if ( pMatriz != NULL )
       {
@@ -136,204 +155,34 @@
 
 /***************************************************************************
 *
-*  Função: MTZ Adicionar filho à esquerda
+*  Função: MTZ Andar em Direção
 *  ****/
 
-   MTZ_tpCondRet MTZ_InserirEsquerda( char ValorParm )
-   {
+   MTZ_tpCondRet MTZ_AndarDirecao( MTZ_tppMatriz pMtz, MTZ_tpDirecao direcao ) {
+   
 
-      MTZ_tpCondRet CondRet ;
 
-      tpCasaMatriz * pCorr ;
-      tpCasaMatriz * pNo ;
 
-      /* Tratar vazio, esquerda */
-
-         CondRet = CriarNoRaiz( ValorParm ) ;
-         if ( CondRet != MTZ_CondRetNaoCriouRaiz )
-         {
-            return CondRet ;
-         } /* if */
-
-      /* Criar casa à esquerda de folha */
-
-         pCorr = pMatriz->pNoCorr ;
-         if ( pCorr == NULL )
-         {
-            return MTZ_CondRetErroEstrutura ;
-         } /* if */
-               
-         if ( pCorr->pNoEsq == NULL )
-         {
-            pNo = CriarNo( ValorParm ) ;
-            if ( pNo == NULL )
-            {
-               return MTZ_CondRetFaltouMemoria ;
-            } /* if */
-            pNo->pNoPai      = pCorr ;
-            pCorr->pNoEsq    = pNo ;
-            pMatriz->pNoCorr = pNo ;
-
-            return MTZ_CondRetOK ;
-         } /* if */
-
-      /* Tratar não folha à esquerda */
-
-         return MTZ_CondRetNaoEhFolha ;
-
-   } /* Fim função: MTZ Adicionar filho à esquerda */
+   } /* Fim função: MTZ Andar em Direção */
 
 /***************************************************************************
 *
-*  Função: MTZ Adicionar filho à direita
+*  Função: MTZ Inserir lista na casa corrente
 *  ****/
 
-   MTZ_tpCondRet MTZ_InserirDireita( char ValorParm )
-   {
+   MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * elemento ) {
 
-      MTZ_tpCondRet CondRet ;
-
-      tpCasaMatriz * pCorr ;
-      tpCasaMatriz * pNo ;
-
-      /* Tratar vazio, direita */
-
-         CondRet = CriarNoRaiz( ValorParm ) ;
-         if ( CondRet != MTZ_CondRetNaoCriouRaiz )
-         {
-            return CondRet ;
-         } /* if */
-
-      /* Criar casa à direita de folha */
-
-         pCorr = pMatriz->pNoCorr ;
-         if ( pCorr == NULL )
-         {
-            return MTZ_CondRetErroEstrutura ;
-         } /* if */
-
-         if ( pCorr->pNoDir == NULL )
-         {
-            pNo = CriarNo( ValorParm ) ;
-            if ( pNo == NULL )
-            {
-               return MTZ_CondRetFaltouMemoria ;
-            } /* if */
-            pNo->pNoPai      = pCorr ;
-            pCorr->pNoDir    = pNo ;
-            pMatriz->pNoCorr = pNo ;
-
-            return MTZ_CondRetOK ;
-         } /* if */
-
-      /* Tratar não folha à direita */
-
-         return MTZ_CondRetNaoEhFolha ;
-
-   } /* Fim função: MTZ Adicionar filho à direita */
-
-/***************************************************************************
-*
-*  Função: MTZ Ir para casa pai
-*  ****/
-
-   MTZ_tpCondRet MTZ_IrPai( void )
-   {
-
-      if ( pMatriz == NULL )
-      {
-         return MTZ_CondRetMatrizNaoExiste ;
-      } /* if */
-      if ( pMatriz->pNoCorr == NULL )
-      {
-         return MTZ_CondRetMatrizVazia ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr->pNoPai != NULL )
-      {
-         pMatriz->pNoCorr = pMatriz->pNoCorr->pNoPai ;
-         return MTZ_CondRetOK ;
-      } else {
-         return MTZ_CondRetNohEhRaiz ;
-      } /* if */
-
-   } /* Fim função: MTZ Ir para casa pai */
-
-/***************************************************************************
-*
-*  Função: MTZ Ir para casa à esquerda
-*  ****/
-
-   MTZ_tpCondRet MTZ_IrNoEsquerda( void )
-   {
-
-      if ( pMatriz == NULL )
-      {
-         return MTZ_CondRetMatrizNaoExiste ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr == NULL )
-      {
-         return MTZ_CondRetMatrizVazia ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr->pNoEsq == NULL )
-      {
-         return MTZ_CondRetNaoPossuiFilho ;
-      } /* if */
-
-      pMatriz->pNoCorr = pMatriz->pNoCorr->pNoEsq ;
-      return MTZ_CondRetOK ;
-
-   } /* Fim função: MTZ Ir para casa à esquerda */
-
-/***************************************************************************
-*
-*  Função: MTZ Ir para casa à direita
-*  ****/
-
-   MTZ_tpCondRet MTZ_IrNoDireita( void )
-   {
-
-      if ( pMatriz == NULL )
-      {
-         return MTZ_CondRetMatrizNaoExiste ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr == NULL )
-      {
-         return MTZ_CondRetMatrizVazia ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr->pNoDir == NULL )
-      {
-         return MTZ_CondRetNaoPossuiFilho ;
-      } /* if */
-
-      pMatriz->pNoCorr = pMatriz->pNoCorr->pNoDir ;
-      return MTZ_CondRetOK ;
-
-   } /* Fim função: MTZ Ir para casa à direita */
+      
+   } /* Fim função: MTZ Inserir lista na casa corrente */
 
 /***************************************************************************
 *
 *  Função: MTZ Obter valor corrente
 *  ****/
 
-   MTZ_tpCondRet MTZ_ObterValorCorr( char * ValorParm )
-   {
+   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void * valor ) {
 
-      if ( pMatriz == NULL )
-      {
-         return MTZ_CondRetMatrizNaoExiste ;
-      } /* if */
-      if ( pMatriz->pNoCorr == NULL )
-      {
-         return MTZ_CondRetMatrizVazia ;
-      } /* if */
-      * ValorParm = pMatriz->pNoCorr->Valor ;
-
-      return MTZ_CondRetOK ;
+      
 
    } /* Fim função: MTZ Obter valor corrente */
 
@@ -346,76 +195,32 @@
 *  $FC Função: MTZ Criar casa da matriz
 *
 *  $FV Valor retornado
-*     Ponteiro para o casa criado.
+*     Ponteiro para a casa criada.
 *     Será NULL caso a memória tenha se esgotado.
-*     Os ponteiros do casa criado estarão nulos e o valor é igual ao do
-*     parâmetro.
+*     Os ponteiros de direção da casa criada e o conteudo estarão nulos.
 *
 ***********************************************************************/
 
-   tpCasaMatriz * CriarNo( char ValorParm )
-   {
+   tpCasaMatriz * CriarCasa(  ) {
 
-      tpCasaMatriz * pNo ;
+      tpCasaMatriz * pCasa ;
 
       pNo = ( tpCasaMatriz * ) malloc( sizeof( tpCasaMatriz )) ;
-      if ( pNo == NULL )
+      if ( pCasa == NULL )
       {
          return NULL ;
       } /* if */
 
-      pNo->pNoPai = NULL ;
-      pNo->pNoEsq = NULL ;
-      pNo->pNoDir = NULL ;
-      pNo->Valor  = ValorParm ;
-      return pNo ;
+      int i = 0;
+
+      // Preenche os ponteiros com nulos
+      for (; i < 8; i++) {
+         pCasa->pCasasAdjacentes[i] = NULL;
+      }
+      pCasa->conteudo = NULL ;
+      return pCasa ;
 
    } /* Fim função: MTZ Criar casa da matriz */
-
-
-/***********************************************************************
-*
-*  $FC Função: MTZ Criar casa raiz da matriz
-*
-*  $FV Valor retornado
-*     MTZ_CondRetOK
-*     MTZ_CondRetFaltouMemoria
-*     MTZ_CondRetNaoCriouRaiz
-*
-***********************************************************************/
-
-   MTZ_tpCondRet CriarNoRaiz( char ValorParm )
-   {
-
-      MTZ_tpCondRet CondRet ;
-      tpCasaMatriz * pNo ;
-
-      if ( pMatriz == NULL )
-      {
-         CondRet = MTZ_CriarMatriz( ) ;
-
-         if ( CondRet != MTZ_CondRetOK )
-         {
-            return CondRet ;
-         } /* if */
-      } /* if */
-
-      if ( pMatriz->pNoRaiz == NULL )
-      {
-         pNo = CriarNo( ValorParm ) ;
-         if ( pNo == NULL )
-         {
-            return MTZ_CondRetFaltouMemoria ;
-         } /* if */
-         pMatriz->pNoRaiz = pNo ;
-         pMatriz->pNoCorr = pNo ;
-
-         return MTZ_CondRetOK ;
-      } /* if */
-
-      return MTZ_CondRetNaoCriouRaiz ;
-
-   } /* Fim função: MTZ Criar casa raiz da matriz */
 
 
 /***********************************************************************
