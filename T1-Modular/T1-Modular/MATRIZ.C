@@ -203,15 +203,16 @@
 
    MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz pMtz ) {
 
-      if ( pMatriz != NULL )
-      {
-         if ( pMatriz->pNoRaiz != NULL )
-         {
-            DestroiMatriz( pMatriz->pNoRaiz ) ;
+      if ( pMtz != NULL ) {
+         if ( pMtz->pPrimeiro != NULL ) {
+            DestroiMatriz( pMtz->pPrimeiro ) ;
          } /* if */
-         free( pMatriz ) ;
-         pMatriz = NULL ;
+         free( pMtz ) ;
+         pMtz = NULL ;
+         return MTZ_CondRetOK;
       } /* if */
+
+      return MTZ_CondRetErroEstrutura;
 
    } /* Fim função: MTZ Destruir matriz */
 
@@ -268,8 +269,7 @@
       tpCasaMatriz * pCasa ;
 
       pNo = ( tpCasaMatriz * ) malloc( sizeof( tpCasaMatriz )) ;
-      if ( pCasa == NULL )
-      {
+      if ( pCasa == NULL ) {
          return NULL ;
       } /* if */
 
@@ -296,17 +296,9 @@
 
    void DestroiMatriz( tpCasaMatriz * pCasa ) {
 
-      if ( pNo->pNoEsq != NULL )
-      {
-         DestroiMatriz( pNo->pNoEsq ) ;
-      } /* if */
-
-      if ( pNo->pNoDir != NULL )
-      {
-         DestroiMatriz( pNo->pNoDir ) ;
-      } /* if */
-
-      free( pNo ) ;
+      if (pCasa != NULL) {
+         
+      }
 
    } /* Fim função: MTZ Destruir a estrutura da matriz */
 

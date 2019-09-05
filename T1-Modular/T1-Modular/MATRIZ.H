@@ -44,7 +44,7 @@
 
 /* Tipo referência para uma matriz */
 
-typedef struct tgCasaMatriz * MTZ_tppMatriz ;
+typedef struct tgMatriz * MTZ_tppMatriz ;
 
 
 /***********************************************************************
