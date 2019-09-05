@@ -86,7 +86,7 @@
 
    static void DestroiMatriz( MTZ_tppMatriz pMtz ) ;
 
-   static void DestroiCasa( tpCasaMatriz * pCasa, void ( * ExcluirValor ) ( void * pValor ) )
+   static void DestroiCasa( tpCasaMatriz * pCasa, void ( * ExcluirValor ) ( void * pValor ) ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -110,18 +110,18 @@
          return MTZ_CondRetFaltouMemoria;
 
       // Setup da head
-      *ppMtz->id = 0;
-      *ppMtz->ExcluirValor = ExcluirValor;
-      *ppMtz->pCasaCorr = NULL;
+      (*ppMtz)->id = 0;
+      (*ppMtz)->ExcluirValor = ExcluirValor;
+      (*ppMtz)->pCasaCorr = NULL;
 
       // Criar a primeira casa
-      *ppMtz->pPrimeiro = CriarCasa();
-      if (*ppMtz->pPrimeiro == NULL) {
+      (*ppMtz)->pPrimeiro = CriarCasa();
+      if ((*ppMtz)->pPrimeiro == NULL) {
          // Libera a head
          free(*ppMtz);
          return MTZ_CondRetFaltouMemoria;
       }
-
+	  
       // Começa a preencher as demais casas, linha por linha
       int linha, coluna;
       // Só é preciso setar os ponteiros para as casas oeste, norte, noroeste e nordeste, assim como
@@ -132,7 +132,7 @@
       for (linha = 0; linha < n; linha++) {
 
          if (linha == 0) {
-            pCasaInicioLinha = *ppMtz->pPrimeiro;
+            pCasaInicioLinha = (*ppMtz)->pPrimeiro;
             pCasaNorte = NULL;            
 
          } else {
@@ -190,7 +190,7 @@
       }
 
       // Apontar o ponteiro corrente para a primeira casa
-      *ppMtz->pCasaCorr = *ppMtz->pPrimeiro;
+      (*ppMtz)->pCasaCorr = (*ppMtz)->pPrimeiro;
 
       return MTZ_CondRetOK ;
 

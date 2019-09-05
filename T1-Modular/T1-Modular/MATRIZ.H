@@ -74,7 +74,7 @@ typedef struct tgMatriz * MTZ_tppMatriz ;
          MTZ_CondRetCasaVazia = 5 ,
                /* Casa da matriz está vazia */
 
-         MTZ_CondRetFaltouMemoria = 6 ,
+         MTZ_CondRetFaltouMemoria = 6
                /* Faltou memória ao alocar dados */
 
    } MTZ_tpCondRet ;
@@ -110,7 +110,7 @@ typedef struct tgMatriz * MTZ_tppMatriz ;
         MTZ_DirOeste = 6 ,
             /* Andar na direção Oeste */
         
-        MTZ_DirNoroeste = 7 ,
+        MTZ_DirNoroeste = 7
             /* Andar na direção Noroeste */
         
     } MTZ_tpDirecao ;
