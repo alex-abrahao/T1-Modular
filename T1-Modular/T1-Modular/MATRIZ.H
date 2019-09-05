@@ -13,6 +13,8 @@
 *  Projeto: Disciplinas INF 1628 / 1301
 *  Gestor:  DI/PUC-Rio
 *  Autores: aaf - Alexandre Abrahão Ferreira
+*           jmb - João Marcello Bessa
+*           phd - Pedro Henrique Dias
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
@@ -42,7 +44,7 @@
 
 /* Tipo referência para uma matriz */
 
-typedef struct tgCasaMatriz * MTZ_tppMatriz ;
+typedef struct tgMatriz * MTZ_tppMatriz ;
 
 
 /***********************************************************************

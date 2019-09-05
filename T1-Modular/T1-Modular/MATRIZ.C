@@ -9,7 +9,9 @@
 *
 *  Projeto: Disciplinas INF 1628 / 1301
 *  Gestor:  DI/PUC-Rio
-*  Autores: avs - Arndt von Staa
+*  Autores: aaf - Alexandre Abrahão Ferreira
+*           jmb - João Marcello Bessa
+*           phd - Pedro Henrique Dias
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
@@ -25,7 +27,6 @@
 
 #define MATRIZ_OWN
 #include "MATRIZ.H"
-#include "LISTA.H"
 #undef MATRIZ_OWN
 
 /***********************************************************************
@@ -119,15 +120,76 @@
          return MTZ_CondRetFaltouMemoria;
       }
 
-      // Começa a preencher as demais casas
-      int i, j;
-      tpCasaMatriz * pCasaAnterior, * pCasaInicioLinha, * pCasaAtual;
+      // Começa a preencher as demais casas, linha por linha
+      int linha, coluna;
+      // Só é preciso setar os ponteiros para as casas oeste, norte, noroeste e nordeste, assim como
+      // setar nessas casas as direcoes inversas para o ponteiro da casa atual que está sendo criada.
+      tpCasaMatriz * pCasaOeste, * pCasaInicioLinha, * pCasaAtual, * pCasaNorte;
+
       // Para cada linha
+      for (linha = 0; linha < n; linha++) {
 
-         // Para cada coluna
+         if (linha == 0) {
+            pCasaInicioLinha = *ppMtz->pPrimeiro;
+            pCasaNorte = NULL;            
 
+         } else {
+            pCasaAtual = CriarCasa();
 
-      // Retornar o ponteiro corrente para a primeira casa
+            if (pCasaAtual == NULL) {
+
+               /* PREENCHER COM SE FALTAR MEMORIA */
+
+               return MTZ_CondRetFaltouMemoria;
+            }
+            // Apontar a linha anterior como o norte da casa de inicio da nova linha, e vice-versa
+            pCasaInicioLinha->pCasasAdjacentes[MTZ_DirSul] = pCasaInicioLinha;
+            pCasaAtual->pCasasAdjacentes[MTZ_DirNorte] = pCasaInicioLinha;
+            // Apontar nordeste (e sudeste da linha de cima)
+            // Não será nulo, pois se passou para a segunda linha existe pelo menos 2 casas na linha de cima
+            pCasaAtual->pCasasAdjacentes[MTZ_DirNordeste] = pCasaInicioLinha->pCasasAdjacentes[MTZ_DirLeste];
+            pCasaInicioLinha->pCasasAdjacentes[MTZ_DirLeste]->pCasasAdjacentes[MTZ_DirSudoeste] = pCasaAtual;
+            // A casa norte no inicio do loop de coluna será o norte da casa anterior, ou seja, o noroeste da nova casa a ser criada
+            pCasaNorte = pCasaInicioLinha;
+            // Agora o inicio da linha é a casa que acabou de ser criada
+            pCasaInicioLinha = pCasaAtual;
+         }
+         pCasaOeste = pCasaInicioLinha;
+
+         // Para cada coluna (elemento da primeira coluna já foi criado)
+         for (coluna = 1; coluna < n; coluna++) {
+
+            pCasaAtual = CriarCasa();
+            if (pCasaAtual == NULL) {
+
+               /* PREENCHER COM SE FALTAR MEMORIA */
+
+               return MTZ_CondRetFaltouMemoria;
+            }
+            if (pCasaNorte != NULL) {
+               // Preenche o noroeste
+               pCasaAtual->pCasasAdjacentes[MTZ_DirNoroeste] = pCasaNorte;
+               pCasaNorte->pCasasAdjacentes[MTZ_DirSudeste] = pCasaAtual;
+               // Atualiza o norte e preenche (sempre deverá existir o leste do norte atual)
+               pCasaNorte = pCasaNorte->pCasasAdjacentes[MTZ_DirLeste];
+               pCasaNorte->pCasasAdjacentes[MTZ_DirSul] = pCasaAtual;
+               pCasaAtual->pCasasAdjacentes[MTZ_DirNorte] = pCasaNorte;
+               // Preenche a casa nordeste
+               if (pCasaNorte->pCasasAdjacentes[MTZ_DirLeste] != NULL) {
+                  tpCasaMatriz * pCasaNordeste = pCasaNorte->pCasasAdjacentes[MTZ_DirLeste];
+                  pCasaNordeste->pCasasAdjacentes[MTZ_DirSudoeste] = pCasaAtual;
+                  pCasaAtual->pCasasAdjacentes[MTZ_DirNordeste] = pCasaNordeste;
+               }
+            }
+            // Preenche a casa oeste
+            pCasaAtual->pCasasAdjacentes[MTZ_DirOeste] = pCasaOeste;
+            pCasaOeste->pCasasAdjacentes[MTZ_DirLeste] = pCasaAtual;
+            // Atualiza a casa oeste para a proxima iteração
+            pCasaOeste = pCasaAtual;
+         }
+      }
+
+      // Apontar o ponteiro corrente para a primeira casa
       *ppMtz->pCasaCorr = *ppMtz->pPrimeiro;
 
       return MTZ_CondRetOK ;
@@ -141,15 +203,16 @@
 
    MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz pMtz ) {
 
-      if ( pMatriz != NULL )
-      {
-         if ( pMatriz->pNoRaiz != NULL )
-         {
-            DestroiMatriz( pMatriz->pNoRaiz ) ;
+      if ( pMtz != NULL ) {
+         if ( pMtz->pPrimeiro != NULL ) {
+            DestroiMatriz( pMtz->pPrimeiro ) ;
          } /* if */
-         free( pMatriz ) ;
-         pMatriz = NULL ;
+         free( pMtz ) ;
+         pMtz = NULL ;
+         return MTZ_CondRetOK;
       } /* if */
+
+      return MTZ_CondRetErroEstrutura;
 
    } /* Fim função: MTZ Destruir matriz */
 
@@ -206,8 +269,7 @@
       tpCasaMatriz * pCasa ;
 
       pNo = ( tpCasaMatriz * ) malloc( sizeof( tpCasaMatriz )) ;
-      if ( pCasa == NULL )
-      {
+      if ( pCasa == NULL ) {
          return NULL ;
       } /* if */
 
@@ -232,20 +294,11 @@
 *
 ***********************************************************************/
 
-   void DestroiMatriz( tpCasaMatriz * pNo )
-   {
+   void DestroiMatriz( tpCasaMatriz * pCasa ) {
 
-      if ( pNo->pNoEsq != NULL )
-      {
-         DestroiMatriz( pNo->pNoEsq ) ;
-      } /* if */
-
-      if ( pNo->pNoDir != NULL )
-      {
-         DestroiMatriz( pNo->pNoDir ) ;
-      } /* if */
-
-      free( pNo ) ;
+      if (pCasa != NULL) {
+         
+      }
 
    } /* Fim função: MTZ Destruir a estrutura da matriz */
 
