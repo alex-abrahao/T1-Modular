@@ -97,6 +97,11 @@
 
    MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValor ) ( void * pValor ) ) {
 
+      int linha, coluna;
+      // Só é preciso setar os ponteiros para as casas oeste, norte, noroeste e nordeste, assim como
+      // setar nessas casas as direcoes inversas para o ponteiro da casa atual que está sendo criada.
+      tpCasaMatriz * pCasaOeste, * pCasaInicioLinha, * pCasaAtual, * pCasaNorte;
+	  
       // Verificar se n é positivo
       if (n <= 0) return MTZ_CondRetErroEstrutura;
 
@@ -123,10 +128,6 @@
       }
 	  
       // Começa a preencher as demais casas, linha por linha
-      int linha, coluna;
-      // Só é preciso setar os ponteiros para as casas oeste, norte, noroeste e nordeste, assim como
-      // setar nessas casas as direcoes inversas para o ponteiro da casa atual que está sendo criada.
-      tpCasaMatriz * pCasaOeste, * pCasaInicioLinha, * pCasaAtual, * pCasaNorte;
 
       // Para cada linha
       for (linha = 0; linha < n; linha++) {
@@ -278,14 +279,13 @@
 
    tpCasaMatriz * CriarCasa(  ) {
 
+	  int i = 0;
       tpCasaMatriz * pCasa ;
 
-      pNo = ( tpCasaMatriz * ) malloc( sizeof( tpCasaMatriz )) ;
+      pCasa = ( tpCasaMatriz * ) malloc( sizeof( tpCasaMatriz )) ;
       if ( pCasa == NULL ) {
          return NULL ;
       } /* if */
-
-      int i = 0;
 
       // Preenche os ponteiros com nulos
       for (; i < 8; i++) {
@@ -308,7 +308,7 @@
 
    void DestroiMatriz( MTZ_tppMatriz pMtz ) {
 
-      tpCasaMatriz * pColuna, * pDestruir = NULL;
+      tpCasaMatriz * pDestruir = NULL;
 
       // Destruir linha a linha
       while (pMtz->pPrimeiro != NULL) {

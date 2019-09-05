@@ -1,4 +1,4 @@
-﻿Build started 05/09/2019 19:20:37.
+﻿Build started 05/09/2019 19:27:33.
      1>Project "C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "Debug\T1-Modular.unsuccessfulbuild".
@@ -14,96 +14,11 @@
      1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(170): error C2198: 'MTZ_AndarDirecao' : too few arguments for call
      1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(182): error C2198: 'MTZ_DestruirMatriz' : too few arguments for call
          MATRIZ.C
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(126): error C2143: syntax error : missing ';' before 'type'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2275: 'tpCasaMatriz' : illegal use of this type as an expression
-                 c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(50) : see declaration of 'tpCasaMatriz'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2065: 'pCasaOeste' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2100: illegal indirection
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2100: illegal indirection
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(129): error C2100: illegal indirection
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(132): error C2065: 'linha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(132): error C2065: 'linha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(132): error C2065: 'linha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(134): error C2065: 'linha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(135): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(135): warning C4047: '=' : 'int' differs in levels of indirection from 'tpCasaMatriz *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(136): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(136): warning C4047: '=' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(139): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(139): warning C4047: '=' : 'int' differs in levels of indirection from 'tpCasaMatriz *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(141): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(141): warning C4047: '==' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(147): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(147): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(147): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(148): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(148): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(148): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(151): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(151): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(151): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(151): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(152): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(152): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(152): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(154): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(154): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(156): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(156): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(158): error C2065: 'pCasaOeste' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(158): error C2065: 'pCasaInicioLinha' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(161): error C2065: 'coluna' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(161): error C2065: 'coluna' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(161): error C2065: 'coluna' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(163): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(163): warning C4047: '=' : 'int' differs in levels of indirection from 'tpCasaMatriz *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(164): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(164): warning C4047: '==' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(169): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(169): warning C4047: '!=' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(171): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(171): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(171): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(172): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(172): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(172): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(174): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(174): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(174): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(175): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(175): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(175): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(176): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(176): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(176): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(178): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(178): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(179): error C2065: 'pCasaNorte' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(179): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(180): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(180): warning C4047: '=' : 'tgCasaMatriz *' differs in levels of indirection from 'int'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(181): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(181): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(185): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(185): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(185): error C2065: 'pCasaOeste' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(186): error C2065: 'pCasaOeste' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(186): error C2223: left of '->pCasasAdjacentes' must point to struct/union
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(186): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(188): error C2065: 'pCasaOeste' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(188): error C2065: 'pCasaAtual' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(283): error C2065: 'pNo' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(283): warning C4047: '=' : 'int' differs in levels of indirection from 'tpCasaMatriz *'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(288): error C2143: syntax error : missing ';' before 'type'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(291): error C2065: 'i' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(291): error C2065: 'i' : undeclared identifier
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(292): error C2065: 'i' : undeclared identifier
          Generating Code...
+     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(252): warning C4716: 'MTZ_InserirElementoNaCasaCorrente' : must return a value
+     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(263): warning C4716: 'MTZ_ObterValorCorrente' : must return a value
      1>Done Building Project "C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.20
+Time Elapsed 00:00:00.24
