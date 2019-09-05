@@ -181,7 +181,7 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 
 /***********************************************************************
 *
-*  $FC Função: MTZ Inserir lista na casa corrente
+*  $FC Função: MTZ Inserir elemento na casa corrente
 *
 *  $ED Descrição da função
 *     Insere um elemento na casa corrente da matriz.

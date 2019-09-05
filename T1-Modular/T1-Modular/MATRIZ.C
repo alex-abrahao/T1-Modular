@@ -84,7 +84,9 @@
 
    static tpCasaMatriz * CriarCasa( ) ;
 
-   static void DestroiMatriz( tpCasaMatriz * pNo ) ;
+   static void DestroiMatriz( MTZ_tppMatriz pMtz ) ;
+
+   static void DestroiCasa( tpCasaMatriz * pCasa, void ( * ExcluirValor ) ( void * pValor ) )
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -138,8 +140,7 @@
 
             if (pCasaAtual == NULL) {
 
-               /* PREENCHER COM SE FALTAR MEMORIA */
-
+               MTZ_DestruirMatriz(*ppMtz);
                return MTZ_CondRetFaltouMemoria;
             }
             // Apontar a linha anterior como o norte da casa de inicio da nova linha, e vice-versa
@@ -162,8 +163,7 @@
             pCasaAtual = CriarCasa();
             if (pCasaAtual == NULL) {
 
-               /* PREENCHER COM SE FALTAR MEMORIA */
-
+               MTZ_DestruirMatriz(*ppMtz);
                return MTZ_CondRetFaltouMemoria;
             }
             if (pCasaNorte != NULL) {
@@ -205,14 +205,14 @@
 
       if ( pMtz != NULL ) {
          if ( pMtz->pPrimeiro != NULL ) {
-            DestroiMatriz( pMtz->pPrimeiro ) ;
+            DestroiMatriz( pMtz ) ;
          } /* if */
          free( pMtz ) ;
          pMtz = NULL ;
          return MTZ_CondRetOK;
       } /* if */
 
-      return MTZ_CondRetErroEstrutura;
+      return MTZ_CondRetMatrizNaoExiste;
 
    } /* Fim função: MTZ Destruir matriz */
 
@@ -222,21 +222,33 @@
 *  ****/
 
    MTZ_tpCondRet MTZ_AndarDirecao( MTZ_tppMatriz pMtz, MTZ_tpDirecao direcao ) {
-   
+      
+      // Tratar erro na estrutura
+      if (pMtz == NULL)
+         return MTZ_CondRetMatrizNaoExiste;
 
+      // Tratar erro na direção
+      if (direcao < 0 || direcao > 7)
+         return MTZ_CondRetDirecaoNaoExisteOuInvalida;
 
+      // Tratar se está andando para uma direção que contém nulo
+      if (pMtz->pCasaCorr->pCasasAdjacentes[direcao] == NULL)
+         return MTZ_CondRetDirecaoNaoExisteOuInvalida;
+
+      pMtz->pCasaCorr = pMtz->pCasaCorr->pCasasAdjacentes[direcao];
+      return MTZ_CondRetOK;
 
    } /* Fim função: MTZ Andar em Direção */
 
 /***************************************************************************
 *
-*  Função: MTZ Inserir lista na casa corrente
+*  Função: MTZ Inserir elemento na casa corrente
 *  ****/
 
    MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * elemento ) {
 
       
-   } /* Fim função: MTZ Inserir lista na casa corrente */
+   } /* Fim função: MTZ Inserir elemento na casa corrente */
 
 /***************************************************************************
 *
@@ -290,17 +302,55 @@
 *  $FC Função: MTZ Destruir a estrutura da matriz
 *
 *  $EAE Assertivas de entradas esperadas
-*     pNoMatriz != NULL
+*     pMtz != NULL
 *
 ***********************************************************************/
 
-   void DestroiMatriz( tpCasaMatriz * pCasa ) {
+   void DestroiMatriz( MTZ_tppMatriz pMtz ) {
 
-      if (pCasa != NULL) {
+      tpCasaMatriz * pColuna, * pDestruir = NULL;
+
+      // Destruir linha a linha
+      while (pMtz->pPrimeiro != NULL) {
+
+         // Atualiza a casa corrente
+         pMtz->pCasaCorr = pMtz->pPrimeiro;
+
+         // Destruir cada coluna, exceto a primeira
+         while(MTZ_AndarDirecao(pMtz, MTZ_DirLeste) != MTZ_CondRetDirecaoNaoExisteOuInvalida) {
+
+            if (pDestruir != NULL)
+               DestroiCasa(pDestruir, pMtz->ExcluirValor);
+
+            pDestruir = pMtz->pCasaCorr;
+         }
+
+         pDestruir = pMtz->pPrimeiro;
+         pMtz->pPrimeiro = pMtz->pPrimeiro->pCasasAdjacentes[MTZ_DirSul];
          
+         DestroiCasa(pDestruir, pMtz->ExcluirValor);
       }
 
+
    } /* Fim função: MTZ Destruir a estrutura da matriz */
+
+/***********************************************************************
+*
+*  $FC Função: MTZ Destruir uma casa da matriz
+*
+*  $EAE Assertivas de entradas esperadas
+*     pCasa != NULL
+*     ExcluirValor != NULL
+*
+***********************************************************************/
+
+   void DestroiCasa( tpCasaMatriz * pCasa, void ( * ExcluirValor ) ( void * pValor ) ) {
+
+      ExcluirValor(pCasa->conteudo);
+      free(pCasa);
+      pCasa = NULL;
+
+   } /* Fim função: MTZ Destruir uma casa da matriz */
 
 /********** Fim do módulo de implementação: Módulo matriz **********/
 
