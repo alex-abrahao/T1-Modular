@@ -248,7 +248,7 @@
 
    MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * elemento ) {
 
-      
+      return MTZ_CondRetOK;
    } /* Fim função: MTZ Inserir elemento na casa corrente */
 
 /***************************************************************************
@@ -256,9 +256,11 @@
 *  Função: MTZ Obter valor corrente
 *  ****/
 
-   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void * valor ) {
-
-      
+   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void ** valor ) {
+	   if (pMtz == NULL) return MTZ_CondRetMatrizNaoExiste;
+	   if(pMtz->pCasaCorr->conteudo == NULL) return MTZ_CondRetCasaVazia;
+	   *valor = pMtz->pCasaCorr->conteudo; 
+	   return MTZ_CondRetOK;
 
    } /* Fim função: MTZ Obter valor corrente */
 
@@ -324,11 +326,15 @@
 
             pDestruir = pMtz->pCasaCorr;
          }
+		 
+		 if (pDestruir != NULL)
+			 DestroiCasa(pDestruir, pMtz->ExcluirValor);
 
          pDestruir = pMtz->pPrimeiro;
          pMtz->pPrimeiro = pMtz->pPrimeiro->pCasasAdjacentes[MTZ_DirSul];
          
          DestroiCasa(pDestruir, pMtz->ExcluirValor);
+		 pDestruir = NULL;
       }
 
 

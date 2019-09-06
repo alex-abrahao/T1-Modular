@@ -193,7 +193,7 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetErroEstrutura
-*     MTZ_CondRetFaltouMemoria
+*	  MTZ_CondRetMatrizNaoExiste
 *
 ***********************************************************************/
 
@@ -209,7 +209,7 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 *
 *  $EP Parâmetros
 *     $P pMtz - Ponteiro para uma matriz
-*     $P valor - Ponteiro para o valor a ser obtido
+*     $P valor - Ponteiro de ponteiro para o valor a ser obtido
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
@@ -218,7 +218,7 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void * valor ) ;
+   MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void ** valor ) ;
 
 
 #undef MATRIZ_EXT

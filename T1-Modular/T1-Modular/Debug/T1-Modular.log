@@ -1,24 +1,25 @@
-﻿Build started 05/09/2019 19:27:33.
-     1>Project "C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
+﻿Build started 05/09/2019 23:58:37.
+     1>Project "C:\Users\joaom\OneDrive\Documentos\ProgMod\repositorio\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" on node 2 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "C:\Users\joaom\OneDrive\Documentos\ProgMod\repositorio\T1-Modular\T1-Modular\Debug\".
+       InitializeBuildStatus:
          Touching "Debug\T1-Modular.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt MATRIZ.C TESTARV.C
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt hello.c MATRIZ.C TESTARV.C
          TESTARV.C
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(105): error C2198: 'MTZ_CriarMatriz' : too few arguments for call
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(124): warning C4047: 'function' : 'MTZ_tppMatriz' differs in levels of indirection from 'char'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(124): warning C4024: 'MTZ_InserirElementoNaCasaCorrente' : different types for formal and actual parameter 1
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(124): error C2198: 'MTZ_InserirElementoNaCasaCorrente' : too few arguments for call
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(143): warning C4133: 'function' : incompatible types - from 'char *' to 'MTZ_tppMatriz'
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(143): error C2198: 'MTZ_ObterValorCorrente' : too few arguments for call
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(170): error C2198: 'MTZ_AndarDirecao' : too few arguments for call
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testarv.c(182): error C2198: 'MTZ_DestruirMatriz' : too few arguments for call
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(105): error C2198: 'MTZ_CriarMatriz' : too few arguments for call
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(124): warning C4047: 'function' : 'MTZ_tppMatriz' differs in levels of indirection from 'char'
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(124): warning C4024: 'MTZ_InserirElementoNaCasaCorrente' : different types for formal and actual parameter 1
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(124): error C2198: 'MTZ_InserirElementoNaCasaCorrente' : too few arguments for call
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(143): warning C4133: 'function' : incompatible types - from 'char *' to 'MTZ_tppMatriz'
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(143): error C2198: 'MTZ_ObterValorCorrente' : too few arguments for call
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(170): error C2198: 'MTZ_AndarDirecao' : too few arguments for call
+     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(182): error C2198: 'MTZ_DestruirMatriz' : too few arguments for call
          MATRIZ.C
+         hello.c
          Generating Code...
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(252): warning C4716: 'MTZ_InserirElementoNaCasaCorrente' : must return a value
-     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\matriz.c(263): warning C4716: 'MTZ_ObterValorCorrente' : must return a value
-     1>Done Building Project "C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" (build target(s)) -- FAILED.
+     1>Done Building Project "C:\Users\joaom\OneDrive\Documentos\ProgMod\repositorio\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.24
+Time Elapsed 00:00:01.25
