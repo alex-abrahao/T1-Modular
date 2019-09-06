@@ -314,6 +314,8 @@
 
       // Destruir linha a linha
       while (pMtz->pPrimeiro != NULL) {
+         // Marca que não há casas a serem destruídas
+         pDestruir = NULL;
 
          // Atualiza a casa corrente
          pMtz->pCasaCorr = pMtz->pPrimeiro;
@@ -321,20 +323,23 @@
          // Destruir cada coluna, exceto a primeira
          while(MTZ_AndarDirecao(pMtz, MTZ_DirLeste) != MTZ_CondRetDirecaoNaoExisteOuInvalida) {
 
+            // Destroi se houver casa marcada
             if (pDestruir != NULL)
                DestroiCasa(pDestruir, pMtz->ExcluirValor);
 
+            // Marca a casa para ser destruída na próxima iteração ou no fim da coluna
             pDestruir = pMtz->pCasaCorr;
          }
-		 
-		 if (pDestruir != NULL)
-			 DestroiCasa(pDestruir, pMtz->ExcluirValor);
+		    
+         // Destroi se houver uma marcada
+         if (pDestruir != NULL)
+          DestroiCasa(pDestruir, pMtz->ExcluirValor);
 
+         // Atualiza para começar a destruir a próxima linha e destroi a primeira casa da coluna
          pDestruir = pMtz->pPrimeiro;
          pMtz->pPrimeiro = pMtz->pPrimeiro->pCasasAdjacentes[MTZ_DirSul];
          
          DestroiCasa(pDestruir, pMtz->ExcluirValor);
-		 pDestruir = NULL;
       }
 
 
