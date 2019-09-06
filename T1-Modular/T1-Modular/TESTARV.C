@@ -40,6 +40,8 @@
 
 #include    <string.h>
 #include    <stdio.h>
+//WIP
+#include    <malloc.h>
 
 #include    "TST_ESPC.H"
 
@@ -55,6 +57,9 @@
 #define     ANDAR_CMD           "=andar"
 #define     OBTER_VAL_CMD       "=obter"
 #define     DESTROI_CMD         "=destruir"
+
+//WIP
+static void ExcluirValor( void * pValor ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -90,6 +95,13 @@
 
       TST_tpCondRet Ret ;
 
+	  //WIP
+	  int n=4;
+	  MTZ_tppMatriz * pMtz;
+	  pMtz = ( MTZ_tppMatriz * ) malloc( sizeof( MTZ_tppMatriz )) ;
+      if (*pMtz == NULL)
+         return TST_CondRetMemoria;
+
       /* Testar MTZ Criar matriz */
 
          if ( strcmp( ComandoTeste , CRIAR_MTZ_CMD ) == 0 )
@@ -102,7 +114,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_CriarMatriz( ) ;
+            CondRetObtido = MTZ_CriarMatriz( pMtz , n , ExcluirValor ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao criar matriz." );
@@ -121,7 +133,8 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( ValorDado ) ;
+			//WIP
+            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( *pMtz , &ValorDado ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado inserir o elemento." );
@@ -140,7 +153,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_ObterValorCorrente( &ValorObtido ) ;
+            CondRetObtido = MTZ_ObterValorCorrente( *pMtz , &ValorObtido ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." );
@@ -167,7 +180,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_AndarDirecao( ) ;
+            CondRetObtido = MTZ_AndarDirecao( *pMtz , MTZ_DirLeste ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao andar." );
@@ -179,7 +192,7 @@
          else if ( strcmp( ComandoTeste , DESTROI_CMD ) == 0 )
          {
 
-            MTZ_DestruirMatriz( ) ;
+            MTZ_DestruirMatriz( *pMtz ) ;
 
             return TST_CondRetOK ;
 
@@ -191,3 +204,10 @@
 
 /********** Fim do módulo de implementação: Módulo de teste específico **********/
 
+   //WIP
+   void ExcluirValor( void * pValor )
+   {
+
+      free( pValor ) ;
+
+   }
