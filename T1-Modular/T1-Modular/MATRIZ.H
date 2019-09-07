@@ -188,16 +188,16 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 *
 *  $EP Parâmetros
 *     $P pMtz - Ponteiro para uma matriz
-*     $P elemento - Ponteiro para valor a ser inserido na casa corrente
+*     $P pElemento - Ponteiro para valor a ser inserido na casa corrente
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetErroEstrutura
-*	  MTZ_CondRetMatrizNaoExiste
+*	    MTZ_CondRetMatrizNaoExiste
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * elemento ) ;
+   MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * pElemento ) ;
 
 
 /***********************************************************************

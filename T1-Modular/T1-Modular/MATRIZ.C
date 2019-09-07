@@ -246,7 +246,16 @@
 *  Função: MTZ Inserir elemento na casa corrente
 *  ****/
 
-   MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * elemento ) {
+   MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * pElemento ) {
+
+      // Tratar se a matriz existe
+      if (pMtz == NULL)
+         return MTZ_CondRetMatrizNaoExiste;
+      // Tratar se o ponteiro para o elemento é nulo
+      if (pElemento == NULL)
+         return MTZ_CondRetErroEstrutura;
+
+      pMtz->pCasaCorr->conteudo = pElemento;
 
       return MTZ_CondRetOK;
    } /* Fim função: MTZ Inserir elemento na casa corrente */
