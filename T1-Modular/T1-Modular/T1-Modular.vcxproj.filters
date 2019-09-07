@@ -18,10 +18,10 @@
     <ClCompile Include="hello.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TESTARV.C">
+    <ClCompile Include="MATRIZ.C">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MATRIZ.C">
+    <ClCompile Include="TESTMTZ.C">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,25 +1,39 @@
-﻿Build started 05/09/2019 23:58:37.
-     1>Project "C:\Users\joaom\OneDrive\Documentos\ProgMod\repositorio\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" on node 2 (build target(s)).
-     1>PrepareForBuild:
-         Creating directory "C:\Users\joaom\OneDrive\Documentos\ProgMod\repositorio\T1-Modular\T1-Modular\Debug\".
-       InitializeBuildStatus:
+﻿Build started 07/09/2019 18:30:22.
+     1>Project "C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
          Touching "Debug\T1-Modular.unsuccessfulbuild".
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt hello.c MATRIZ.C TESTARV.C
-         TESTARV.C
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(105): error C2198: 'MTZ_CriarMatriz' : too few arguments for call
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(124): warning C4047: 'function' : 'MTZ_tppMatriz' differs in levels of indirection from 'char'
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(124): warning C4024: 'MTZ_InserirElementoNaCasaCorrente' : different types for formal and actual parameter 1
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(124): error C2198: 'MTZ_InserirElementoNaCasaCorrente' : too few arguments for call
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(143): warning C4133: 'function' : incompatible types - from 'char *' to 'MTZ_tppMatriz'
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(143): error C2198: 'MTZ_ObterValorCorrente' : too few arguments for call
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(170): error C2198: 'MTZ_AndarDirecao' : too few arguments for call
-     1>c:\users\joaom\onedrive\documentos\progmod\repositorio\t1-modular\t1-modular\t1-modular\testarv.c(182): error C2198: 'MTZ_DestruirMatriz' : too few arguments for call
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt MATRIZ.C TESTMTZ.C
+         TESTMTZ.C
+     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testmtz.c(156): warning C4047: 'function' : 'void **' differs in levels of indirection from 'char *'
+     1>c:\users\alexandre\documents\repo\t1-modular\t1-modular\t1-modular\testmtz.c(156): warning C4022: 'MTZ_ObterValorCorrente' : pointer mismatch for actual parameter 2
          MATRIZ.C
-         hello.c
          Generating Code...
-     1>Done Building Project "C:\Users\joaom\OneDrive\Documentos\ProgMod\repositorio\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" (build target(s)) -- FAILED.
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\T1-Modular.exe.embed.manifest.res" Debug\T1-Modular_manifest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\Debug\T1-Modular.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\T1-Modular.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\Debug\T1-Modular.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\Debug\T1-Modular.lib" /MACHINE:X86 "Debug\T1-Modular.exe.embed.manifest.res"
+         Debug\hello.obj
+         Debug\MATRIZ.obj
+         Debug\TESTMTZ.obj
+         ArcaboucoTeste.lib
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\T1-Modular.exe.embed.manifest" /manifest "Debug\T1-Modular.exe.intermediate.manifest"
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\T1-Modular.exe.embed.manifest.res" Debug\T1-Modular_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\Debug\T1-Modular.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\T1-Modular.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\Debug\T1-Modular.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\Debug\T1-Modular.lib" /MACHINE:X86 "Debug\T1-Modular.exe.embed.manifest.res"
+         Debug\hello.obj
+         Debug\MATRIZ.obj
+         Debug\TESTMTZ.obj
+         ArcaboucoTeste.lib
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+         T1-Modular.vcxproj -> C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\Debug\T1-Modular.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\T1-Modular.unsuccessfulbuild".
+         Touching "Debug\T1-Modular.lastbuildstate".
+     1>Done Building Project "C:\Users\Alexandre\Documents\Repo\T1-Modular\T1-Modular\T1-Modular\T1-Modular.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.25
+Time Elapsed 00:00:03.11

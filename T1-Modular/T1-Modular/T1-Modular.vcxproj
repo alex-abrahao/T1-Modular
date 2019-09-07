@@ -76,7 +76,7 @@
   <ItemGroup>
     <ClCompile Include="hello.c" />
     <ClCompile Include="MATRIZ.C" />
-    <ClCompile Include="TESTARV.C" />
+    <ClCompile Include="TESTMTZ.C" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MATRIZ.H" />
