@@ -22,9 +22,9 @@
 *
 *  $ED Descrição do módulo
 *     Este módulo implementa um conjunto simples de funções para criar e
-*     explorar árvores binárias.
-*     A árvore possui uma cabeça que contém uma referência para a raíz da
-*     árvore e outra para um nó corrente da árvore.
+*     explorar matrizes.
+*     A matriz possui uma cabeça que contém uma referência para a primeira 
+*     casa da matriz e outra para a casa corrente da mesma.
 *     A cada momento o módulo admite no máximo uma única árvore.
 *     Ao iniciar a execução do programa não existe árvore.
 *     A árvore poderá estar vazia. Neste caso a raiz e o nó corrente
