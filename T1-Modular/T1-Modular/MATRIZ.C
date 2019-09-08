@@ -246,6 +246,7 @@
 *  Função: MTZ Inserir elemento na casa corrente
 *  ****/
 
+
    MTZ_tpCondRet MTZ_InserirElementoNaCasaCorrente( MTZ_tppMatriz pMtz, void * pElemento ) {
 
       // Tratar se a matriz existe
@@ -267,8 +268,11 @@
 
    MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void ** valor ) {
 	   if (pMtz == NULL) return MTZ_CondRetMatrizNaoExiste;
+
 	   if(pMtz->pCasaCorr->conteudo == NULL) return MTZ_CondRetCasaVazia;
+
 	   *valor = pMtz->pCasaCorr->conteudo; 
+
 	   return MTZ_CondRetOK;
 
    } /* Fim função: MTZ Obter valor corrente */

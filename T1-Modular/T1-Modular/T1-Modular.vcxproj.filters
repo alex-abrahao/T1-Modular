@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hello.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MATRIZ.C">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TESTMTZ.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LISTA.C">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,14 +32,19 @@
     <ClInclude Include="LERPARM.H">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MATRIZ.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="TST_ESPC.H">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MATRIZ.H">
+    <ClInclude Include="LISTA.H">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ArcaboucoTeste.lib" />
+    <Library Include="ArcaboucoTeste.lib">
+      <Filter>Resource Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>

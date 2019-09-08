@@ -1,0 +1,7 @@
+== Inicializar valores
+=declararparm   mat0  int 0
+=declararparm   mat1  int 1
+=declararparm   mat2  int 2
+
+==teste criar matriz
+=criar mat0 1 2

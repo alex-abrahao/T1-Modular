@@ -96,7 +96,7 @@ static void ExcluirValor( void * pValor ) ;
       TST_tpCondRet Ret ;
 
 	  //WIP
-	  int n=4;
+	  int dim;
 	  MTZ_tppMatriz * pMtz;
 	  pMtz = ( MTZ_tppMatriz * ) malloc( sizeof( MTZ_tppMatriz )) ;
       if (*pMtz == NULL)
@@ -107,14 +107,14 @@ static void ExcluirValor( void * pValor ) ;
          if ( strcmp( ComandoTeste , CRIAR_MTZ_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "i" ,
-                               &CondRetEsperada ) ;
-            if ( NumLidos != 1 )
+            NumLidos = LER_LerParametros( "ii" ,
+                               &CondRetEsperada, &dim ) ;
+            if ( NumLidos != 2 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_CriarMatriz( pMtz , n , ExcluirValor ) ;
+            CondRetObtido = MTZ_CriarMatriz( pMtz , dim , ExcluirValor ) ; 
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao criar matriz." );
@@ -134,7 +134,7 @@ static void ExcluirValor( void * pValor ) ;
             } /* if */
 
 			//WIP
-            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( *pMtz , &ValorDado ) ;
+            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( *pMtz , (void *) ValorDado ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado inserir o elemento." );
@@ -153,7 +153,7 @@ static void ExcluirValor( void * pValor ) ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_ObterValorCorrente( *pMtz , &ValorObtido ) ;
+            CondRetObtido = MTZ_ObterValorCorrente( *pMtz , (void **) ValorObtido ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." );
