@@ -1,7 +1,19 @@
+// Teste da matriz
+// teste se sai algo
+
+
 == Inicializar valores
 =declararparm   mat0  int 0
 =declararparm   mat1  int 1
 =declararparm   mat2  int 2
 
-==teste criar matriz
+== teste criar matriz
 =criar mat0 2 0
+
+== teste andar matriz
+=andar mat0 2 0
+
+== teste de andar numa matriz inexistente
+=andar mat1 2 4
+
+// fim

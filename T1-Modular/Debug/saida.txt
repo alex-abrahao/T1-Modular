@@ -1,0 +1,31 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: T1-Modular.exe
+
+      Arquivo de teste:    TesteMatriz
+
+
+!!!    0  Linha:     1  // Teste da matriz 
+!!!    0  Linha:     2  // teste se sai algo 
+    5  == Inicializar valores
+   10  == teste criar matrizComecando a testar 
+
+   13  == teste andar matrizComecando a testar 
+
+   16  == teste de andar numa matriz inexistenteComecando a testar 
+
+!!!    0  Linha:    19  // fim 
+
+!!! Número de linhas lidas:          19
+!!! Número de casos de teste:         4
+!!! Número comandos corretos:         6
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

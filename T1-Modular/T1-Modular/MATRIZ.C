@@ -101,7 +101,7 @@
       // Só é preciso setar os ponteiros para as casas oeste, norte, noroeste e nordeste, assim como
       // setar nessas casas as direcoes inversas para o ponteiro da casa atual que está sendo criada.
       tpCasaMatriz * pCasaOeste, * pCasaInicioLinha, * pCasaAtual, * pCasaNorte;
-	  
+
       // Verificar se n é positivo
       if (n <= 0) return MTZ_CondRetErroEstrutura;
 
@@ -126,7 +126,7 @@
          free(*ppMtz);
          return MTZ_CondRetFaltouMemoria;
       }
-	  
+
       // Começa a preencher as demais casas, linha por linha
 
       // Para cada linha

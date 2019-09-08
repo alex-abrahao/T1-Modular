@@ -61,6 +61,9 @@
 //WIP
 static void ExcluirValor( void * pValor ) ;
 
+/* Cria o vetor de matrizes sem lixo previamente dentro dele */
+static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL} ;
+
 /*****  Código das funções exportadas pelo módulo  *****/
 
 
@@ -96,25 +99,29 @@ static void ExcluirValor( void * pValor ) ;
       TST_tpCondRet Ret ;
 
 	  //WIP
-	  int dim;
+	  int indiceMtz;
 	  MTZ_tppMatriz * pMtz;
-	  pMtz = ( MTZ_tppMatriz * ) malloc( sizeof( MTZ_tppMatriz )) ;
-      if (*pMtz == NULL)
-         return TST_CondRetMemoria;
 
+	  printf("Comecando a testar \n");
+
+	  pMtz = ( MTZ_tppMatriz * ) malloc( sizeof( MTZ_tppMatriz )) ;
+      if (pMtz == NULL)
+         return TST_CondRetMemoria;
+	  *pMtz = NULL;
       /* Testar MTZ Criar matriz */
 
          if ( strcmp( ComandoTeste , CRIAR_MTZ_CMD ) == 0 )
          {
+			int dim;
 
-            NumLidos = LER_LerParametros( "ii" ,
-                               &CondRetEsperada, &dim ) ;
-            if ( NumLidos != 2 )
+            NumLidos = LER_LerParametros( "iii" ,
+                               &indiceMtz, &dim, &CondRetEsperada ) ;
+            if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_CriarMatriz( pMtz , dim , ExcluirValor ) ; 
+            CondRetObtido = MTZ_CriarMatriz( &vetorMatrizes[indiceMtz] , dim , ExcluirValor ) ; 
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao criar matriz." );
@@ -172,15 +179,16 @@ static void ExcluirValor( void * pValor ) ;
 
          else if ( strcmp( ComandoTeste , ANDAR_CMD ) == 0 )
          {
+			MTZ_tpDirecao dir;
 
-            NumLidos = LER_LerParametros( "i" ,
-                               &CondRetEsperada ) ;
-            if ( NumLidos != 1 )
+            NumLidos = LER_LerParametros( "iii" ,
+                               &indiceMtz, &dir, &CondRetEsperada ) ;
+            if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_AndarDirecao( *pMtz , MTZ_DirLeste ) ;
+            CondRetObtido = MTZ_AndarDirecao( vetorMatrizes[indiceMtz] , dir ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao andar." );
