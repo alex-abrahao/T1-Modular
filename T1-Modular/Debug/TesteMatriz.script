@@ -65,12 +65,10 @@
 =andar	mat0	Norte	DirInvalida
 =andar	mat0	Sul	OK
 =andar	mat0	Sul	OK
-=andar	mat0	Sul	OK
-=andar	mat0	Leste	OK
+=andar	mat0	Sul	DirInvalida
+=andar	mat0	Norte	OK
+=andar	mat0	Norte	OK
 =andar	mat0	Norte	DirInvalida
-//=andar	mat0	Norte	OK
-//=andar	mat0	Norte	OK
-//=andar	mat0	Norte	DirInvalida
 
 == Percorrer todas as casas da matriz 3x3
 =andar	mat0	Leste		OK

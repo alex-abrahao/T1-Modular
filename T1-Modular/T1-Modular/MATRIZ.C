@@ -145,7 +145,7 @@
                return MTZ_CondRetFaltouMemoria;
             }
             // Apontar a linha anterior como o norte da casa de inicio da nova linha, e vice-versa
-            pCasaInicioLinha->pCasasAdjacentes[MTZ_DirSul] = pCasaInicioLinha;
+            pCasaInicioLinha->pCasasAdjacentes[MTZ_DirSul] = pCasaAtual;
             pCasaAtual->pCasasAdjacentes[MTZ_DirNorte] = pCasaInicioLinha;
             // Apontar nordeste (e sudeste da linha de cima)
             // Não será nulo, pois se passou para a segunda linha existe pelo menos 2 casas na linha de cima
@@ -371,7 +371,8 @@
 
    void DestroiCasa( tpCasaMatriz * pCasa, void ( * ExcluirValor ) ( void * pValor ) ) {
 
-      //ExcluirValor(pCasa->conteudo);
+	  if (pCasa->conteudo != NULL)
+		ExcluirValor(pCasa->conteudo);
       free(pCasa);
       pCasa = NULL;
 
