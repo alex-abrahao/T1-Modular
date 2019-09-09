@@ -350,6 +350,7 @@
 
          // Atualiza para começar a destruir a próxima linha e destroi a primeira casa da coluna
          pDestruir = pMtz->pPrimeiro;
+		 
          pMtz->pPrimeiro = pMtz->pPrimeiro->pCasasAdjacentes[MTZ_DirSul];
          
          DestroiCasa(pDestruir, pMtz->ExcluirValor);
@@ -370,7 +371,7 @@
 
    void DestroiCasa( tpCasaMatriz * pCasa, void ( * ExcluirValor ) ( void * pValor ) ) {
 
-      ExcluirValor(pCasa->conteudo);
+      //ExcluirValor(pCasa->conteudo);
       free(pCasa);
       pCasa = NULL;
 

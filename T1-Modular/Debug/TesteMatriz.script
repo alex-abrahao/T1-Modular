@@ -1,19 +1,86 @@
-// Teste da matriz
-// teste se sai algo
-
+// Script:    TesteMatriz.script
+// Autores:   Alexandre Abrahão
+//	      João Marcello Bessa
+// 	      Pedro Dias
+// Data:      07/09/2019
+// Propósito: Testar completamente a criação e manipulação de até 10 matrizes
+//
 
 == Inicializar valores
 =declararparm   mat0  int 0
 =declararparm   mat1  int 1
 =declararparm   mat2  int 2
+=declararparm   mat3  int 3
+=declararparm   mat4  int 4
+=declararparm   mat5  int 5
+=declararparm   mat6  int 6
+=declararparm   mat7  int 7
+=declararparm   mat8  int 8
+=declararparm   mat9  int 9
+
+=declararparm   OK		int 0
+=declararparm   NaoHead		int 1
+=declararparm   ErroEstrut	int 2
+=declararparm   DirInvalida	int 3
+=declararparm   MtzNaoExiste	int 4
+=declararparm   CasaVazia	int 5
+=declararparm   FaltaMem	int 6
+
+=declararparm   Norte		int 0
+=declararparm   Nordeste	int 1
+=declararparm   Leste		int 2
+=declararparm   Sudeste		int 3
+=declararparm   Sul		int 4
+=declararparm   Sudoeste	int 5
+=declararparm   Oeste		int 6
+=declararparm   Noroeste	int 7
+
+== Testes das funcoes com matrizes inexistentes
+=andar		mat1 0 MtzNaoExiste
+// =obter		mat1 0 MtzNaoExiste
+// =inselm	mat1 0 MtzNaoExiste
+=destruir	mat1 MtzNaoExiste
 
 == teste criar matriz
-=criar mat0 2 0
+=criar	mat0	3	OK
+=criar	mat9	0	ErroEstrut
+=criar	mat9	-1	ErroEstrut
+
+== Teste destruir matriz
+=criar		mat2	2	OK
+=destruir	mat2	OK
 
 == teste andar matriz
-=andar mat0 2 0
+=andar	mat0	Leste		OK
+=andar	mat0	Sul		OK
+=andar	mat0	Nordeste	OK
+=andar	mat0	Sudoeste	OK
+=andar	mat0	Sudeste		OK
+=andar	mat0	Noroeste	OK
+=andar	mat0	Oeste		OK
+=andar	mat0	Norte		OK
 
-== teste de andar numa matriz inexistente
-=andar mat1 2 4
+== Andar para um lugar inexistente e outro invalido
+=andar	mat0	11	DirInvalida
+=andar	mat0	Norte	DirInvalida
+=andar	mat0	Sul	OK
+=andar	mat0	Sul	OK
+=andar	mat0	Sul	OK
+=andar	mat0	Leste	OK
+=andar	mat0	Norte	DirInvalida
+//=andar	mat0	Norte	OK
+//=andar	mat0	Norte	OK
+//=andar	mat0	Norte	DirInvalida
+
+== Percorrer todas as casas da matriz 3x3
+=andar	mat0	Leste		OK
+=andar	mat0	Leste		OK
+=andar	mat0	Sul		OK
+=andar	mat0	Sul		OK
+=andar	mat0	Oeste		OK
+=andar	mat0	Norte		OK
+=andar	mat0	Sudoeste	OK
+=andar	mat0	Norte		OK
+=andar	mat0	Norte		OK
 
 // fim

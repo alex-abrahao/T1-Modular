@@ -9,23 +9,41 @@ LES - Laboratório de Engenharia de Software DI/PUC-Rio
       Arquivo de teste:    TesteMatriz
 
 
-!!!    0  Linha:     1  // Teste da matriz 
-!!!    0  Linha:     2  // teste se sai algo 
-    5  == Inicializar valores
-   10  == teste criar matrizComecando a testar 
+!!!    0  Linha:     1  // Script:    TesteMatriz.script 
+!!!    0  Linha:     2  // Autores:   Alexandre AbrahÃ£o 
+!!!    0  Linha:     3  //	      JoÃ£o Marcello Bessa 
+!!!    0  Linha:     4  // 	      Pedro Dias 
+!!!    0  Linha:     5  // Data:      07/09/2019 
+!!!    0  Linha:     6  // PropÃ³sito: Testar completamente a criaÃ§Ã£o e manipulaÃ§Ã£o de atÃ© 10 matrizes 
+!!!    0  Linha:     7  // 
+    9  == Inicializar valores
+   38  == Testes das funcoes com matrizes inexistentes
+!!!    0  Linha:    40  // =obter		mat1 0 MtzNaoExiste 
+!!!    0  Linha:    41  // =inselm	mat1 0 MtzNaoExiste 
+   44  == teste criar matriz
+   49  == Teste destruir matriz
+   53  == teste andar matriz
+   63  == Andar para um lugar inexistente e outro invalido
+!!!    0  Linha:    71  //=andar	mat0	Norte	OK 
+!!!    0  Linha:    72  //=andar	mat0	Norte	OK 
+!!!    0  Linha:    73  //=andar	mat0	Norte	DirInvalida 
+   75  == Percorrer todas as casas da matriz 3x3
+>>>    1  Linha:    77  Retorno errado ao andar. Deveria ser: 0  É: 3
+>>>    2  Linha:    78  Não é comando recuperar:  =andar	mat0	Sul		OK
+>>>    3  Linha:    79  Comando de teste ignorado:  =andar	mat0	Sul		OK
+>>>    4  Linha:    80  Comando de teste ignorado:  =andar	mat0	Oeste		OK
+>>>    5  Linha:    81  Comando de teste ignorado:  =andar	mat0	Norte		OK
+>>>    6  Linha:    82  Comando de teste ignorado:  =andar	mat0	Sudoeste	OK
+>>>    7  Linha:    83  Comando de teste ignorado:  =andar	mat0	Norte		OK
+>>>    8  Linha:    84  Comando de teste ignorado:  =andar	mat0	Norte		OK
+!!!    8  Linha:    86  // fim 
 
-   13  == teste andar matrizComecando a testar 
+!!! Número de linhas lidas:          86
+!!! Número de casos de teste:         7
+!!! Número comandos corretos:        48
+!!! Número de falhas encontradas:     8
 
-   16  == teste de andar numa matriz inexistenteComecando a testar 
-
-!!!    0  Linha:    19  // fim 
-
-!!! Número de linhas lidas:          19
-!!! Número de casos de teste:         4
-!!! Número comandos corretos:         6
-!!! Número de falhas encontradas:     0
-
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

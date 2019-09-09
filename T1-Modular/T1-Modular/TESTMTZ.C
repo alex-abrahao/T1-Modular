@@ -100,14 +100,7 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
 
 	  //WIP
 	  int indiceMtz;
-	  MTZ_tppMatriz * pMtz;
 
-	  printf("Comecando a testar \n");
-
-	  pMtz = ( MTZ_tppMatriz * ) malloc( sizeof( MTZ_tppMatriz )) ;
-      if (pMtz == NULL)
-         return TST_CondRetMemoria;
-	  *pMtz = NULL;
       /* Testar MTZ Criar matriz */
 
          if ( strcmp( ComandoTeste , CRIAR_MTZ_CMD ) == 0 )
@@ -133,15 +126,15 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
          else if ( strcmp( ComandoTeste , INS_ELM_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "ci" ,
-                               &ValorDado , &CondRetEsperada ) ;
-            if ( NumLidos != 2 )
+            NumLidos = LER_LerParametros( "ici" ,
+                               &indiceMtz, &ValorDado , &CondRetEsperada ) ;
+            if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
 
 			//WIP
-            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( *pMtz , (void *) ValorDado ) ;
+            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( vetorMatrizes[indiceMtz] , (void *) &ValorDado ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado inserir o elemento." );
@@ -152,15 +145,15 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
 
          else if ( strcmp( ComandoTeste , OBTER_VAL_CMD ) == 0 )
          {
-
-            NumLidos = LER_LerParametros( "ci" ,
-                               &ValorEsperado , &CondRetEsperada ) ;
-            if ( NumLidos != 2 )
+			char ** ppObtido;
+            NumLidos = LER_LerParametros( "ici" ,
+                               &indiceMtz, &ValorEsperado , &CondRetEsperada ) ;
+            if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_ObterValorCorrente( *pMtz , (void **) ValorObtido ) ;
+            CondRetObtido = MTZ_ObterValorCorrente( vetorMatrizes[indiceMtz], (void **) ppObtido ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." );
@@ -200,9 +193,17 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
          else if ( strcmp( ComandoTeste , DESTROI_CMD ) == 0 )
          {
 
-            MTZ_DestruirMatriz( *pMtz ) ;
+			NumLidos = LER_LerParametros( "ii" ,
+                               &indiceMtz, &CondRetEsperada ) ;
+            if ( NumLidos != 2 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
 
-            return TST_CondRetOK ;
+            CondRetObtido = MTZ_DestruirMatriz( vetorMatrizes[indiceMtz] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+                                    "Retorno errado ao destruir matriz." ); ;
 
          } /* fim ativa: Testar MTZ Destruir Matriz */
 
@@ -216,6 +217,7 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
    void ExcluirValor( void * pValor )
    {
 
-      free( pValor ) ;
+	  if (pValor != NULL)
+		free( pValor ) ;
 
    }
