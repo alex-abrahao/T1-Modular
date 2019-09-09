@@ -200,7 +200,7 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_DestruirMatriz( vetorMatrizes[indiceMtz] ) ;
+            CondRetObtido = MTZ_DestruirMatriz( &vetorMatrizes[indiceMtz] ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao destruir matriz." ); ;

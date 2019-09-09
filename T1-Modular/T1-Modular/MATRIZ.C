@@ -105,6 +105,10 @@
       // Verificar se n é positivo
       if (n <= 0) return MTZ_CondRetErroEstrutura;
 
+      // Verificar se o ponteiro de ponteiro é NULL
+      if (ppMtz == NULL)
+         return MTZ_CondRetErroEstrutura;
+
       // Se já havia uma matriz anteriormente, destrua-a primeiro
       if (*ppMtz != NULL)
          MTZ_DestruirMatriz(*ppMtz);
@@ -124,6 +128,7 @@
       if ((*ppMtz)->pPrimeiro == NULL) {
          // Libera a head
          free(*ppMtz);
+         *ppMtz = NULL;
          return MTZ_CondRetFaltouMemoria;
       }
 
@@ -141,7 +146,7 @@
 
             if (pCasaAtual == NULL) {
 
-               MTZ_DestruirMatriz(*ppMtz);
+               MTZ_DestruirMatriz(ppMtz);
                return MTZ_CondRetFaltouMemoria;
             }
             // Apontar a linha anterior como o norte da casa de inicio da nova linha, e vice-versa
@@ -164,7 +169,7 @@
             pCasaAtual = CriarCasa();
             if (pCasaAtual == NULL) {
 
-               MTZ_DestruirMatriz(*ppMtz);
+               MTZ_DestruirMatriz(ppMtz);
                return MTZ_CondRetFaltouMemoria;
             }
             if (pCasaNorte != NULL) {
@@ -202,14 +207,15 @@
 *  Função: MTZ Destruir matriz
 *  ****/
 
-   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz pMtz ) {
+   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz * ppMtz ) {
 
-      if ( pMtz != NULL ) {
-         if ( pMtz->pPrimeiro != NULL ) {
-            DestroiMatriz( pMtz ) ;
+      if ( ppMtz == NULL ) return MTZ_CondRetMatrizNaoExiste;
+      if ( *ppMtz != NULL ) {
+         if ( (*ppMtz)->pPrimeiro != NULL ) {
+            DestroiMatriz( *ppMtz ) ;
          } /* if */
-         free( pMtz ) ;
-         pMtz = NULL ;
+         free( *ppMtz ) ;
+         *ppMtz = NULL ;
          return MTZ_CondRetOK;
       } /* if */
 

@@ -134,7 +134,7 @@ typedef struct tgMatriz * MTZ_tppMatriz ;
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetFaltouMemoria
-*     MTZ_CondRetErroEstrutura   - Caso a dimensão da matriz seja menor que zero
+*     MTZ_CondRetErroEstrutura   - Caso a dimensão da matriz seja menor que zero ou o ponteiro seja nulo
 *
 ***********************************************************************/
 
@@ -150,15 +150,16 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 *     Faz nada caso o indice nao contenha uma matriz.
 *
 *  $EP Parametros
-*     $P pMtz - Ponteiro para uma matriz
+*     $P ppMtz - Ponteiro para uma matriz
 *
 *  $FV Valor retornado
 *     MTZ_CondRetOK
 *     MTZ_CondRetMatrizNaoExiste
+*     MTZ_CondRetErroEstrutura   - Caso o ponteiro seja nulo
 *
 ***********************************************************************/
 
-   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz pMtz ) ;
+   MTZ_tpCondRet MTZ_DestruirMatriz( MTZ_tppMatriz * pptz ) ;
 
 
 /***********************************************************************
