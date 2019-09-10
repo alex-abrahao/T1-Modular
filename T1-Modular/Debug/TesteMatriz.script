@@ -101,16 +101,19 @@
 =andar	mat0	Norte		OK
 =andar	mat0	Norte		OK
 
-== Inserir lista em diferentes casas da matriz
+== Inserir lista em diferentes casas da matriz e obter
 =criar		mat7	2	OK
 =inselm		mat7	ListaA	OK
 =obter		mat7	'a'	OK
 =andar		mat7	Sul	OK
 =inselm		mat7	ListaB	OK
+=obter		mat7	'b'	OK
 =andar		mat7	Leste	OK
 =inselm		mat7	ListaC	OK
+=obter		mat7	'c'	OK
 =andar		mat7	Norte	OK
 =inselm		mat7	ListaD	OK
+=obter		mat7	'd'	OK
 
 == Inserir lista em uma casa que ja tenha uma lista
 =andar		mat7	Sudoeste	OK

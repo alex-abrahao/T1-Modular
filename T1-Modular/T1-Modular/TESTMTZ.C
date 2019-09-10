@@ -152,6 +152,8 @@ static void ExcluirLista( void * pValor ) ;
                LIS_InserirElementoApos(listaTemp, aux);
             }
 
+			IrInicioLista( listaTemp );
+
             CondRetObtido = MTZ_InserirElementoNaCasaCorrente( vetorMatrizes[indiceMtz] , (void *) listaTemp ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
