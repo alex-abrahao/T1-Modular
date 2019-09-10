@@ -31,7 +31,7 @@
 *                   - chama a função MTZ_InserirElementoNaCasaCorrente( <String> )
 *                     Obs. notação: <String> é o valor do parâmetro
 *                     que se encontra no comando de teste.
-*     "=andar"     
+*     "=andar" <Int>    
 *                   - chama a função MTZ_AndarDirecao( )
 *     "=obter" <Int> <Char>
 *                   - chama a função MTZ_ObterValorCorrente( ) e compara
@@ -66,7 +66,9 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-static void ExcluirValor( void * pValor ) ;
+static void ExcluirCaracter( void * pValor ) ;
+
+static void ExcluirLista( void * pValor ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -118,7 +120,7 @@ static void ExcluirValor( void * pValor ) ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_CriarMatriz( &vetorMatrizes[indiceMtz] , dim , ExcluirValor ) ; 
+            CondRetObtido = MTZ_CriarMatriz( &vetorMatrizes[indiceMtz] , dim , ExcluirLista ) ; 
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao criar matriz." );
@@ -129,6 +131,12 @@ static void ExcluirValor( void * pValor ) ;
 
          else if ( strcmp( ComandoTeste , INS_ELM_CMD ) == 0 )
          {
+            LIS_tppLista listaTemp;
+            int i = 0, tamString;
+
+            listaTemp = LIS_CriarLista(ExcluirCaracter);
+            if (listaTemp == NULL)
+               return TST_CondRetMemoria;
 
             NumLidos = LER_LerParametros( "isi" ,
                                &indiceMtz, StringDado , &CondRetEsperada ) ;
@@ -137,7 +145,12 @@ static void ExcluirValor( void * pValor ) ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( vetorMatrizes[indiceMtz] , (void *) StringDado ) ;
+            tamString = strlen( StringDado );
+            for (i = 0; i < tamString; i++) {
+               LIS_InserirElementoApos(listaTemp, StringDado[i]);
+            }
+
+            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( vetorMatrizes[indiceMtz] , (void *) listaTemp ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado inserir o elemento." );
@@ -157,7 +170,7 @@ static void ExcluirValor( void * pValor ) ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_ObterValorCorrente( vetorMatrizes[indiceMtz], (void **) lista ) ;
+            CondRetObtido = MTZ_ObterValorCorrente( vetorMatrizes[indiceMtz], (void **) pLista ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." );
@@ -166,6 +179,8 @@ static void ExcluirValor( void * pValor ) ;
             {
                return Ret ;
             } /* if */
+
+
 
             return TST_CompararChar( ValorEsperado , ValorObtido ,
                                      "O valor está errado." ) ;
@@ -219,16 +234,32 @@ static void ExcluirValor( void * pValor ) ;
 
 /***********************************************************************
 *
-*  $FC Função: TMTZ Excluir valor
+*  $FC Função: TMTZ Excluir caracter
 *
 ***********************************************************************/
-   //WIP
-   void ExcluirValor( void * pValor )
+
+   void ExcluirCaracter( void * pValor )
    {
 
      if (pValor != NULL)
       free( pValor ) ;
 
-   } /* Fim função: TMTZ Excluir valor */
+   } /* Fim função: TMTZ Excluir caracter */
+
+/***********************************************************************
+*
+*  $FC Função: TMTZ Excluir lista
+*
+***********************************************************************/
+
+   void ExcluirLista( void * pValor )
+   {
+
+     if (pValor != NULL) {
+      LIS_DestruirLista((LIS_tppLista) pValor);
+      free( pValor ) ;
+     }
+
+   } /* Fim função: TMTZ Excluir lista */
 
 /********** Fim do módulo de implementação: Módulo de teste específico **********/
