@@ -261,7 +261,8 @@
       // Tratar se o ponteiro para o elemento é nulo
       if (pElemento == NULL)
          return MTZ_CondRetErroEstrutura;
-
+      if (pMtz->pCasaCorr->conteudo != NULL)
+         pMtz->ExcluirValor(pMtz->pCasaCorr->conteudo);
       pMtz->pCasaCorr->conteudo = pElemento;
 
       return MTZ_CondRetOK;
@@ -273,7 +274,10 @@
 *  ****/
 
    MTZ_tpCondRet MTZ_ObterValorCorrente( MTZ_tppMatriz pMtz, void ** valor ) {
+
 	   if (pMtz == NULL) return MTZ_CondRetMatrizNaoExiste;
+
+      if (valor == NULL) return MTZ_CondRetErroEstrutura;
 
 	   if(pMtz->pCasaCorr->conteudo == NULL) return MTZ_CondRetCasaVazia;
 
@@ -300,7 +304,7 @@
 
    tpCasaMatriz * CriarCasa(  ) {
 
-	  int i = 0;
+	   int i = 0;
       tpCasaMatriz * pCasa ;
 
       pCasa = ( tpCasaMatriz * ) malloc( sizeof( tpCasaMatriz )) ;

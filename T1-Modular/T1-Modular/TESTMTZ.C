@@ -25,30 +25,32 @@
 *  $EIU Interface com o usuário pessoa
 *     Comandos de teste específicos para testar o módulo matriz:
 *
-*     "=criar"        - chama a função MTZ_CriarMatriz( )
-*     "=inselm" <Char>
-*                   - chama a função MTZ_ObterValorCorrente( <Char> )
-*                     Obs. notação: <Char>  é o valor do parâmetro
+*     "=criar"  <Int> <Int>
+*                   - chama a função MTZ_CriarMatriz( )
+*     "=inselm" <Int> <String>
+*                   - chama a função MTZ_InserirElementoNaCasaCorrente( <String> )
+*                     Obs. notação: <String> é o valor do parâmetro
 *                     que se encontra no comando de teste.
-*     "=andar"     - chama a função MTZ_IrPai( )
-*     "=obter" <Char>
+*     "=andar"     
+*                   - chama a função MTZ_AndarDirecao( )
+*     "=obter" <Int> <Char>
 *                   - chama a função MTZ_ObterValorCorrente( ) e compara
-*                     o valor retornado com o valor <Char>
-*     "=destroi"    - chama a função MTZ_DestruirMatriz( )
+*                     o primeiro valor retornado da lista com o valor <Char>
+*     "=destroi" <Int>
+*                   - chama a função MTZ_DestruirMatriz( )
 *
 ***************************************************************************/
 
 #include    <string.h>
 #include    <stdio.h>
-//WIP
 #include    <malloc.h>
 
 #include    "TST_ESPC.H"
-
 #include    "generico.h"
 #include    "lerparm.h"
 
 #include    "MATRIZ.h"
+#include    "LISTA.h"
 
 /* Tabela dos nomes dos comandos de teste específicos */
 
@@ -58,11 +60,13 @@
 #define     OBTER_VAL_CMD       "=obter"
 #define     DESTROI_CMD         "=destruir"
 
-//WIP
-static void ExcluirValor( void * pValor ) ;
+/*****  Dados encapsulados no módulo  *****/
 
-/* Cria o vetor de matrizes sem lixo previamente dentro dele */
 static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL} ;
+
+/***** Protótipos das funções encapuladas no módulo *****/
+
+static void ExcluirValor( void * pValor ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -98,8 +102,8 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
 
       TST_tpCondRet Ret ;
 
-	  //WIP
-	  int indiceMtz;
+	   int indiceMtz;
+      char StringDado[ 100 ] ;
 
       /* Testar MTZ Criar matriz */
 
@@ -126,15 +130,14 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
          else if ( strcmp( ComandoTeste , INS_ELM_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "ici" ,
-                               &indiceMtz, &ValorDado , &CondRetEsperada ) ;
+            NumLidos = LER_LerParametros( "isi" ,
+                               &indiceMtz, StringDado , &CondRetEsperada ) ;
             if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-			//WIP
-            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( vetorMatrizes[indiceMtz] , (void *) &ValorDado ) ;
+            CondRetObtido = MTZ_InserirElementoNaCasaCorrente( vetorMatrizes[indiceMtz] , (void *) StringDado ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado inserir o elemento." );
@@ -145,7 +148,8 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
 
          else if ( strcmp( ComandoTeste , OBTER_VAL_CMD ) == 0 )
          {
-			char ** ppObtido;
+            LIS_tppLista pLista[1];
+
             NumLidos = LER_LerParametros( "ici" ,
                                &indiceMtz, &ValorEsperado , &CondRetEsperada ) ;
             if ( NumLidos != 3 )
@@ -153,7 +157,7 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MTZ_ObterValorCorrente( vetorMatrizes[indiceMtz], (void **) ppObtido ) ;
+            CondRetObtido = MTZ_ObterValorCorrente( vetorMatrizes[indiceMtz], (void **) lista ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." );
@@ -172,7 +176,7 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
 
          else if ( strcmp( ComandoTeste , ANDAR_CMD ) == 0 )
          {
-			MTZ_tpDirecao dir;
+			   MTZ_tpDirecao dir;
 
             NumLidos = LER_LerParametros( "iii" ,
                                &indiceMtz, &dir, &CondRetEsperada ) ;
@@ -211,13 +215,20 @@ static MTZ_tppMatriz vetorMatrizes[10] = {NULL, NULL, NULL, NULL, NULL, NULL, NU
 
    } /* Fim função: TMTZ Efetuar operações de teste específicas para matriz */
 
-/********** Fim do módulo de implementação: Módulo de teste específico **********/
+/*****  Código das funções encapsuladas no módulo  *****/
 
+/***********************************************************************
+*
+*  $FC Função: TMTZ Excluir valor
+*
+***********************************************************************/
    //WIP
    void ExcluirValor( void * pValor )
    {
 
-	  if (pValor != NULL)
-		free( pValor ) ;
+     if (pValor != NULL)
+      free( pValor ) ;
 
-   }
+   } /* Fim função: TMTZ Excluir valor */
+
+/********** Fim do módulo de implementação: Módulo de teste específico **********/

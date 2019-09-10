@@ -21,15 +21,32 @@
 *       1.00   aaf   26/08/2019 Início do desenvolvimento
 *
 *  $ED Descrição do módulo
-*     Este módulo implementa um conjunto simples de funções para criar e
-*     explorar matrizes.
-*     A matriz possui uma cabeça que contém uma referência para a primeira 
-*     casa da matriz e outra para a casa corrente da mesma.
-*     A cada momento o módulo admite no máximo uma única árvore.
-*     Ao iniciar a execução do programa não existe árvore.
-*     A árvore poderá estar vazia. Neste caso a raiz e o nó corrente
-*     serão nulos, embora a cabeça esteja definida.
-*     O nó corrente será nulo se e somente se a árvore estiver vazia.
+*     Implementa matrizes genéricas duplamente encadeadas.
+*     Podem existir n matrizes em operação simultaneamente.
+*     As matrizes possuem uma cabeça encapsulando o seu estado.
+*
+*     Cada matriz é homogênea quanto ao tipo dos dados que armazena.
+*     Cada casa da matriz referencia o valor que contém.
+*
+*     Os ponteiros para os dados são copiados para elementos da matriz.
+*        Não é copiado o valor apontado por estes ponteiros.
+*
+*     O controle da destruição do valor de um elemento a ser excluído
+*        é realizado por uma função fornecida pelo usuário.
+*
+*     Cada matriz referencia uma função que determina como devem ser
+*        desalocados os dados nela contidos.
+*
+*     A função de liberação dos valores contidos nos elementos deve
+*        assegurar a liberação de todos os espaços referênciados pelo
+*        valor contido em um elemento.
+*        Esta função é chamada antes de se desalocar uma casa
+*        de uma matriz.
+*        Caso não seja necessário desalocar o valor referenciado pelo
+*        elemento, o ponteiro para a função de liberação poderá ser NULL .
+*        Caso o elemento da matriz seja a única âncora do valor referenciado,
+*        esta função deve promover a destruição (free) desse valor e
+*        de todos os dados nele ancorados.
 *
 ***************************************************************************/
  
@@ -186,6 +203,7 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 *
 *  $ED Descrição da função
 *     Insere um elemento na casa corrente da matriz.
+*     Se já houver um elemento na casa corrente, este será liberado e sustituído.
 *
 *  $EP Parâmetros
 *     $P pMtz - Ponteiro para uma matriz
@@ -216,6 +234,7 @@ MTZ_tpCondRet MTZ_CriarMatriz(MTZ_tppMatriz * ppMtz, int n, void ( * ExcluirValo
 *     MTZ_CondRetOK
 *     MTZ_CondRetMatrizNaoExiste
 *     MTZ_CondRetCasaVazia
+*     MTZ_CondRetErroEstrutura   - Caso o ponteiro para valor seja nulo
 *
 ***********************************************************************/
 
