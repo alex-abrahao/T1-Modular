@@ -164,6 +164,9 @@ static void ExcluirLista( void * pValor ) ;
          else if ( strcmp( ComandoTeste , OBTER_VAL_CMD ) == 0 )
          {
             LIS_tppLista pLista[1];
+			char * pChar = NULL;
+
+			pLista[0] = NULL;
 
             NumLidos = LER_LerParametros( "ici" ,
                                &indiceMtz, &ValorEsperado , &CondRetEsperada ) ;
@@ -182,7 +185,20 @@ static void ExcluirLista( void * pValor ) ;
                return Ret ;
             } /* if */
 
+			if ( CondRetObtido == MTZ_CondRetMatrizNaoExiste && vetorMatrizes[indiceMtz] == NULL ) {
+				return TST_CondRetOK;
+			}
 
+			if ( CondRetObtido == MTZ_CondRetCasaVazia && pLista[0] == NULL ) {
+				return TST_CondRetOK;
+			}
+
+			Ret = TST_CompararPonteiroNulo( 1 , pLista[0],
+                                           "Retorno errado: Ponteiro para lista nulo") ;
+
+			pChar = (char *) LIS_ObterValor( pLista[0] );
+
+			ValorObtido = *pChar;
 
             return TST_CompararChar( ValorEsperado , ValorObtido ,
                                      "O valor está errado." ) ;
@@ -243,8 +259,8 @@ static void ExcluirLista( void * pValor ) ;
    void ExcluirCaracter( void * pValor )
    {
 
-     if (pValor != NULL)
-      free( pValor ) ;
+     //if (pValor != NULL)
+      //free( pValor ) ;
 
    } /* Fim função: TMTZ Excluir caracter */
 
@@ -258,8 +274,8 @@ static void ExcluirLista( void * pValor ) ;
    {
 
      if (pValor != NULL) {
-      LIS_DestruirLista((LIS_tppLista) pValor);
-      free( pValor ) ;
+      //LIS_DestruirLista((LIS_tppLista) pValor);
+      //free( pValor ) ;
      }
 
    } /* Fim função: TMTZ Excluir lista */

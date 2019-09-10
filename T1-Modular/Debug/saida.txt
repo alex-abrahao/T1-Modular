@@ -26,16 +26,25 @@ LES - Laboratório de Engenharia de Software DI/PUC-Rio
    83  == Andar para um lugar inexistente e outro invalido
    93  == Percorrer todas as casas da matriz 3x3
   104  == Inserir lista em diferentes casas da matriz
-  114  == Inserir lista em uma casa que ja tenha uma lista
-  118  == Destruir todas as matrizes usadas
-!!!    0  Linha:   123  // fim 
+>>>    1  Linha:   107  O valor está errado. Deveria ser: 'a'  É: 's'
+>>>    2  Linha:   108  Não é comando recuperar:  =andar		mat7	Sul	OK
+>>>    3  Linha:   109  Comando de teste ignorado:  =inselm		mat7	ListaB	OK
+>>>    4  Linha:   110  Comando de teste ignorado:  =andar		mat7	Leste	OK
+>>>    5  Linha:   111  Comando de teste ignorado:  =inselm		mat7	ListaC	OK
+>>>    6  Linha:   112  Comando de teste ignorado:  =andar		mat7	Norte	OK
+>>>    7  Linha:   113  Comando de teste ignorado:  =inselm		mat7	ListaD	OK
+  115  == Inserir lista em uma casa que ja tenha uma lista
+>>>    8  Linha:   116  Retorno errado ao andar. Deveria ser: 0  É: 3
+>>>    9  Linha:   117  Não é comando recuperar:  =inselm		mat7	ListaC		OK
+  119  == Destruir todas as matrizes usadas
+!!!    9  Linha:   124  // fim 
 
-!!! Número de linhas lidas:         123
+!!! Número de linhas lidas:         124
 !!! Número de casos de teste:        12
-!!! Número comandos corretos:        87
-!!! Número de falhas encontradas:     0
+!!! Número comandos corretos:        79
+!!! Número de falhas encontradas:     9
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

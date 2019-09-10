@@ -35,7 +35,7 @@
 =declararparm   Oeste		int 6
 =declararparm   Noroeste	int 7
 
-=declararparm	ListaA	string "aas"
+=declararparm	ListaA	string "acs"
 =declararparm	ListaB	string "bbs"
 =declararparm	ListaC	string "cjjs"
 =declararparm	ListaD	string "ddsda"
@@ -104,6 +104,7 @@
 == Inserir lista em diferentes casas da matriz
 =criar		mat7	2	OK
 =inselm		mat7	ListaA	OK
+=obter		mat7	'a'	OK
 =andar		mat7	Sul	OK
 =inselm		mat7	ListaB	OK
 =andar		mat7	Leste	OK
