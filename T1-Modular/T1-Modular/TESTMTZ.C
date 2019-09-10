@@ -147,7 +147,9 @@ static void ExcluirLista( void * pValor ) ;
 
             tamString = strlen( StringDado );
             for (i = 0; i < tamString; i++) {
-               LIS_InserirElementoApos(listaTemp, StringDado[i]);
+               char * aux = (char *) malloc(sizeof(char));
+               *aux = StringDado[i];
+               LIS_InserirElementoApos(listaTemp, aux);
             }
 
             CondRetObtido = MTZ_InserirElementoNaCasaCorrente( vetorMatrizes[indiceMtz] , (void *) listaTemp ) ;
