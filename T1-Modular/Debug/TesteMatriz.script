@@ -35,22 +35,42 @@
 =declararparm   Oeste		int 6
 =declararparm   Noroeste	int 7
 
-== Testes das funcoes com matrizes inexistentes
-=andar		mat1 0 MtzNaoExiste
-// =obter		mat1 0 MtzNaoExiste
-// =inselm	mat1 0 MtzNaoExiste
-=destruir	mat1 MtzNaoExiste
+=declararparm	ListaA	string "aas"
+=declararparm	ListaB	string "bbs"
+=declararparm	ListaC	string "cjjs"
+=declararparm	ListaD	string "ddsda"
+=declararparm	ListaE	string "e"
+=declararparm	ListaF	string "fass"
+=declararparm	ListaG	string "gasd"
+=declararparm	ListaH	string "hjkl"
+=declararparm	ListaI	string "iikl"
 
-== teste criar matriz
+== Testes das funcoes com matrizes inexistentes 
+=andar		mat1 0 		MtzNaoExiste
+=inselm		mat1 ListaA 	MtzNaoExiste
+=destruir	mat1 MtzNaoExiste
+=obter		mat1 '!' 	MtzNaoExiste
+
+== Teste criar matriz 
 =criar	mat0	3	OK
 =criar	mat9	0	ErroEstrut
 =criar	mat9	-1	ErroEstrut
 
-== Teste destruir matriz
+== Teste destruir matriz 
 =criar		mat2	2	OK
 =destruir	mat2	OK
 
-== teste andar matriz
+== Teste criar matriz depois de ter destruido uma no mesmo ponteiro
+=criar		mat3	3	OK
+=destruir	mat3	OK
+=criar		mat3	4	OK
+
+== Teste destruir uma matriz que ja foi destruida
+=criar		mat4	2	OK
+=destruir	mat4	OK
+=destruir	mat4	MtzNaoExiste
+
+== Teste andar matriz 
 =andar	mat0	Leste		OK
 =andar	mat0	Sul		OK
 =andar	mat0	Nordeste	OK
@@ -60,7 +80,7 @@
 =andar	mat0	Oeste		OK
 =andar	mat0	Norte		OK
 
-== Andar para um lugar inexistente e outro invalido
+== Andar para um lugar inexistente e outro invalido 
 =andar	mat0	11	DirInvalida
 =andar	mat0	Norte	DirInvalida
 =andar	mat0	Sul	OK
@@ -70,7 +90,7 @@
 =andar	mat0	Norte	OK
 =andar	mat0	Norte	DirInvalida
 
-== Percorrer todas as casas da matriz 3x3
+== Percorrer todas as casas da matriz 3x3 
 =andar	mat0	Leste		OK
 =andar	mat0	Leste		OK
 =andar	mat0	Sul		OK
@@ -80,5 +100,24 @@
 =andar	mat0	Sudoeste	OK
 =andar	mat0	Norte		OK
 =andar	mat0	Norte		OK
+
+== Inserir lista em diferentes casas da matriz
+=criar		mat7	2	OK
+=inselm		mat7	ListaA	OK
+=andar		mat7	Sul	OK
+=inselm		mat7	ListaB	OK
+=andar		mat7	Leste	OK
+=inselm		mat7	ListaC	OK
+=andar		mat7	Norte	OK
+=inselm		mat7	ListaD	OK
+
+== Inserir lista em uma casa que ja tenha uma lista
+=andar		mat7	Sudoeste	OK
+=inselm		mat7	ListaC		OK
+
+== Destruir todas as matrizes usadas
+=destruir	mat0	OK
+=destruir	mat3	OK
+=destruir	mat7	OK
 
 // fim

@@ -56,9 +56,9 @@
 *
 *  $ED Descrição do tipo
 *     A cabeça da matriz é o ponto de acesso para uma determinada matriz.
-*     Por intermédio da referência para o casa corrente e do ponteiro
-*     pai pode-se navegar a matriz sem necessitar de uma pilha.
-*     Pode-se, inclusive, operar com a matriz em forma de co-rotina.
+*     Por intermédio da referência para a casa corrente pode-se navegar
+*	  pela matriz.
+*	  Contém a referência para a função que destroi o conteudo de uma casa.
 *
 ***********************************************************************/
 
@@ -102,16 +102,14 @@
       // setar nessas casas as direcoes inversas para o ponteiro da casa atual que está sendo criada.
       tpCasaMatriz * pCasaOeste, * pCasaInicioLinha, * pCasaAtual, * pCasaNorte;
 
-      // Verificar se n é positivo
       if (n <= 0) return MTZ_CondRetErroEstrutura;
 
-      // Verificar se o ponteiro de ponteiro é NULL
       if (ppMtz == NULL)
          return MTZ_CondRetErroEstrutura;
 
       // Se já havia uma matriz anteriormente, destrua-a primeiro
       if (*ppMtz != NULL)
-         MTZ_DestruirMatriz(*ppMtz);
+         MTZ_DestruirMatriz(ppMtz);
 
       // Alocar espaço para a head
       *ppMtz = ( tpMatriz * ) malloc( sizeof( tpMatriz )) ;
@@ -132,9 +130,6 @@
          return MTZ_CondRetFaltouMemoria;
       }
 
-      // Começa a preencher as demais casas, linha por linha
-
-      // Para cada linha
       for (linha = 0; linha < n; linha++) {
 
          if (linha == 0) {

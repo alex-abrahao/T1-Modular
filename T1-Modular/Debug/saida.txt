@@ -17,22 +17,22 @@ LES - Laboratório de Engenharia de Software DI/PUC-Rio
 !!!    0  Linha:     6  // PropÃ³sito: Testar completamente a criaÃ§Ã£o e manipulaÃ§Ã£o de atÃ© 10 matrizes 
 !!!    0  Linha:     7  // 
     9  == Inicializar valores
-   38  == Testes das funcoes com matrizes inexistentes
-!!!    0  Linha:    40  // =obter		mat1 0 MtzNaoExiste 
-!!!    0  Linha:    41  // =inselm	mat1 0 MtzNaoExiste 
-   44  == teste criar matriz
-   49  == Teste destruir matriz
-   53  == teste andar matriz
-   63  == Andar para um lugar inexistente e outro invalido
-!!!    0  Linha:    72  //=andar	mat0	Norte	OK 
-!!!    0  Linha:    73  //=andar	mat0	Norte	OK 
-!!!    0  Linha:    74  //=andar	mat0	Norte	DirInvalida 
-   76  == Percorrer todas as casas da matriz 3x3
-!!!    0  Linha:    87  // fim 
+   48  == Testes das funcoes com matrizes inexistentes
+   54  == Teste criar matriz
+   59  == Teste destruir matriz
+   63  == Teste criar matriz depois de ter destruido uma no mesmo ponteiro
+   68  == Teste destruir uma matriz que ja foi destruida
+   73  == Teste andar matriz
+   83  == Andar para um lugar inexistente e outro invalido
+   93  == Percorrer todas as casas da matriz 3x3
+  104  == Inserir lista em diferentes casas da matriz
+  114  == Inserir lista em uma casa que ja tenha uma lista
+  118  == Destruir todas as matrizes usadas
+!!!    0  Linha:   123  // fim 
 
-!!! Número de linhas lidas:          87
-!!! Número de casos de teste:         7
-!!! Número comandos corretos:        57
+!!! Número de linhas lidas:         123
+!!! Número de casos de teste:        12
+!!! Número comandos corretos:        87
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas
