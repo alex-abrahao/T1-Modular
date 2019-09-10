@@ -261,8 +261,8 @@ static void ExcluirLista( void * pValor ) ;
    void ExcluirCaracter( void * pValor )
    {
 
-     //if (pValor != NULL)
-      //free( pValor ) ;
+     if (pValor != NULL)
+      free( pValor ) ;
 
    } /* Fim função: TMTZ Excluir caracter */
 
@@ -276,8 +276,7 @@ static void ExcluirLista( void * pValor ) ;
    {
 
      if (pValor != NULL) {
-      //LIS_DestruirLista((LIS_tppLista) pValor);
-      //free( pValor ) ;
+      LIS_DestruirLista((LIS_tppLista) pValor);
      }
 
    } /* Fim função: TMTZ Excluir lista */

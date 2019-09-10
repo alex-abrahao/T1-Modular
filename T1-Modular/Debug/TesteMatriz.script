@@ -45,6 +45,10 @@
 =declararparm	ListaH	string "hjkl"
 =declararparm	ListaI	string "iikl"
 
+== Teste do comando recuperar
+=andar		mat8	0	OK
+=recuperar
+
 == Testes das funcoes com matrizes inexistentes 
 =andar		mat1 0 		MtzNaoExiste
 =inselm		mat1 ListaA 	MtzNaoExiste
