@@ -3,20 +3,13 @@
 //	      João Marcello Bessa
 // 	      Pedro Dias
 // Data:      07/09/2019
-// Propósito: Testar completamente a criação e manipulação de até 10 matrizes
+// Propósito: Testar completamente a criação e manipulação de até 3 matrizes
 //
 
 == Inicializar valores
 =declararparm   mat0  int 0
 =declararparm   mat1  int 1
 =declararparm   mat2  int 2
-=declararparm   mat3  int 3
-=declararparm   mat4  int 4
-=declararparm   mat5  int 5
-=declararparm   mat6  int 6
-=declararparm   mat7  int 7
-=declararparm   mat8  int 8
-=declararparm   mat9  int 9
 
 =declararparm   OK		int 0
 =declararparm   NaoHead		int 1
@@ -35,39 +28,29 @@
 =declararparm   Oeste		int 6
 =declararparm   Noroeste	int 7
 
-=declararparm	ListaA	string "acs"
-=declararparm	ListaB	string "bbs"
-=declararparm	ListaC	string "cjjs"
-=declararparm	ListaD	string "ddsda"
-=declararparm	ListaE	string "e"
-=declararparm	ListaF	string "fass"
-=declararparm	ListaG	string "gasd"
-=declararparm	ListaH	string "hjkl"
-=declararparm	ListaI	string "iikl"
-
 == Teste do comando recuperar
-=andar		mat8	0	OK
+=andar		mat2	0	OK
 =recuperar
 
 == Testes das funcoes com matrizes inexistentes 
 =andar		mat1 0 		MtzNaoExiste
-=inselm		mat1 ListaA 	MtzNaoExiste
+=inselm		mat1 'a'	MtzNaoExiste
 =destruir	mat1 MtzNaoExiste
 =obter		mat1 '!' 	MtzNaoExiste
 
 == Teste criar matriz 
 =criar	mat0	3	OK
-=criar	mat9	0	ErroEstrut
-=criar	mat9	-1	ErroEstrut
+=criar	mat1	0	ErroEstrut
+=criar	mat1	-1	ErroEstrut
 
 == Teste destruir matriz 
 =criar		mat2	2	OK
 =destruir	mat2	OK
 
 == Teste criar matriz depois de ter destruido uma no mesmo ponteiro
-=criar		mat3	3	OK
-=destruir	mat3	OK
-=criar		mat3	4	OK
+=criar		mat1	3	OK
+=destruir	mat1	OK
+=criar		mat1	4	OK
 
 == Teste destruir uma matriz que ja foi destruida
 =criar		mat4	2	OK
@@ -105,27 +88,26 @@
 =andar	mat0	Norte		OK
 =andar	mat0	Norte		OK
 
-== Inserir lista em diferentes casas da matriz e obter
-=criar		mat7	2	OK
-=inselm		mat7	ListaA	OK
-=obter		mat7	'a'	OK
-=andar		mat7	Sul	OK
-=inselm		mat7	ListaB	OK
-=obter		mat7	'b'	OK
-=andar		mat7	Leste	OK
-=inselm		mat7	ListaC	OK
-=obter		mat7	'c'	OK
-=andar		mat7	Norte	OK
-=inselm		mat7	ListaD	OK
-=obter		mat7	'd'	OK
+== Inserir caracter em diferentes casas da matriz e obter
+=criar		mat1	2	OK
+=inselm		mat1	'a'	OK
+=obter		mat1	'a'	OK
+=andar		mat1	Sul	OK
+=inselm		mat1	'b'	OK
+=obter		mat1	'b'	OK
+=andar		mat1	Leste	OK
+=inselm		mat1	'c'	OK
+=obter		mat1	'c'	OK
+=andar		mat1	Norte	OK
+=inselm		mat1	'd'	OK
+=obter		mat1	'd'	OK
 
-== Inserir lista em uma casa que ja tenha uma lista
-=andar		mat7	Sudoeste	OK
-=inselm		mat7	ListaC		OK
+== Inserir caracter em uma casa que ja tenha uma lista
+=andar		mat1	Sudoeste	OK
+=inselm		mat1	'c'		OK
 
 == Destruir todas as matrizes usadas
 =destruir	mat0	OK
-=destruir	mat3	OK
-=destruir	mat7	OK
+=destruir	mat1	OK
 
 // fim

@@ -1,0 +1,1 @@
+T1-Modular.exe /sTesteMatriz > saida.txt

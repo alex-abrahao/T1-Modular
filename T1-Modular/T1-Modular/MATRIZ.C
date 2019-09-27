@@ -15,10 +15,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*       3.00   avs   28/02/2003 Uniformização da interface das funções e
-*                               de todas as condições de retorno.
-*       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
-*       1.00   avs   15/08/2001 Início do desenvolvimento
+*       1.00   aaf   26/08/2019 Início do desenvolvimento
 *
 ***************************************************************************/
 
@@ -41,7 +38,7 @@
 
    typedef struct tgCasaMatriz {
 
-         struct tgCasaMatriz * pCasasAdjacentes[8] ;
+         struct tgCasaMatriz ** pCasasAdjacentes ;
                /* Vetor de ponteiros para as casas adjacentes */
        
          void * conteudo ;
@@ -307,6 +304,13 @@
          return NULL ;
       } /* if */
 
+	  pCasa->pCasasAdjacentes = ( tpCasaMatriz ** ) malloc(8 * sizeof(tpCasaMatriz *));
+
+	  if ( pCasa->pCasasAdjacentes == NULL ) {
+		 free(pCasa);
+         return NULL ;
+      } /* if */
+
       // Preenche os ponteiros com nulos
       for (; i < 8; i++) {
          pCasa->pCasasAdjacentes[i] = NULL;
@@ -378,6 +382,7 @@
 
 	  if (pCasa->conteudo != NULL)
 		ExcluirValor(pCasa->conteudo);
+	  free(pCasa->pCasasAdjacentes);
       free(pCasa);
       pCasa = NULL;
 
